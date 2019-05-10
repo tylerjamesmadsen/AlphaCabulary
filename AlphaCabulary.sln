@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaCabulary.iOS", "AlphaC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaCabulary.UWP", "AlphaCabulary\AlphaCabulary.UWP\AlphaCabulary.UWP.csproj", "{49CD2B88-3CE9-435B-9331-5A2C7363F376}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaCabulary.MobileAppService", "AlphaCabulary\AlphaCabulary.MobileAppService\AlphaCabulary.MobileAppService.csproj", "{960F91D0-0D75-415B-97F0-517ABB1AD95A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaCabulary.MobileAppService", "AlphaCabulary\AlphaCabulary.MobileAppService\AlphaCabulary.MobileAppService.csproj", "{960F91D0-0D75-415B-97F0-517ABB1AD95A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaCabulary", "AlphaCabulary\AlphaCabulary\AlphaCabulary.csproj", "{1307CAD8-AB2A-486F-95E3-DF6026553B0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaCabulary", "AlphaCabulary\AlphaCabulary\AlphaCabulary.csproj", "{1307CAD8-AB2A-486F-95E3-DF6026553B0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,7 +81,6 @@ Global
 		{EE9BDD25-F91B-4060-8BBE-A68E17CDF617}.Debug|x64.Build.0 = Debug|iPhone
 		{EE9BDD25-F91B-4060-8BBE-A68E17CDF617}.Debug|x64.Deploy.0 = Debug|iPhone
 		{EE9BDD25-F91B-4060-8BBE-A68E17CDF617}.Debug|x86.ActiveCfg = Debug|iPhone
-		{EE9BDD25-F91B-4060-8BBE-A68E17CDF617}.Debug|x86.Build.0 = Debug|iPhone
 		{EE9BDD25-F91B-4060-8BBE-A68E17CDF617}.Debug|x86.Deploy.0 = Debug|iPhone
 		{EE9BDD25-F91B-4060-8BBE-A68E17CDF617}.Release|Any CPU.ActiveCfg = Release|iPhone
 		{EE9BDD25-F91B-4060-8BBE-A68E17CDF617}.Release|Any CPU.Build.0 = Release|iPhone
@@ -153,7 +152,6 @@ Global
 		{960F91D0-0D75-415B-97F0-517ABB1AD95A}.Debug|x64.Build.0 = Debug|Any CPU
 		{960F91D0-0D75-415B-97F0-517ABB1AD95A}.Debug|x64.Deploy.0 = Debug|Any CPU
 		{960F91D0-0D75-415B-97F0-517ABB1AD95A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{960F91D0-0D75-415B-97F0-517ABB1AD95A}.Debug|x86.Build.0 = Debug|Any CPU
 		{960F91D0-0D75-415B-97F0-517ABB1AD95A}.Debug|x86.Deploy.0 = Debug|Any CPU
 		{960F91D0-0D75-415B-97F0-517ABB1AD95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960F91D0-0D75-415B-97F0-517ABB1AD95A}.Release|Any CPU.Build.0 = Release|Any CPU
