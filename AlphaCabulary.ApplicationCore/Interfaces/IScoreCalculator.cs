@@ -6,6 +6,6 @@ namespace AlphaCabulary.ApplicationCore.Interfaces
 {
     public interface IScoreCalculator
     {
-        int CalculateWordScore(string word);
+        int CalculateScore(string word);
     }
 }

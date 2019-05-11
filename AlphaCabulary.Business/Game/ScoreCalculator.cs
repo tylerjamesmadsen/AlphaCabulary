@@ -16,22 +16,24 @@ namespace AlphaCabulary.Business.Game
         private const string EXTRA_POINTS_3 = "jkqvxz";
 
         /// <summary>
-        /// 
+        /// Calculates total word score
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        public int CalculateWordScore(string word)
+        public int CalculateScore(string word)
         {
             if (string.IsNullOrWhiteSpace(word)) { return 0; }
 
+            word = word.Trim();
             var score = CalculatePointsPerLetter(word);
             score += CalculateExtraPoints(word);
+            score += CalculateDoubleLetterPoints(word);
 
             return score;
         }
 
         /// <summary>
-        /// 
+        /// Calculates number of points per letter
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
@@ -39,7 +41,7 @@ namespace AlphaCabulary.Business.Game
         {
             if (string.IsNullOrWhiteSpace(word)) { return 0; }
 
-            return word.Length;
+            return word.Trim().Length;
         }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace AlphaCabulary.Business.Game
 
             var extraPointsScore = 0;
 
-            foreach(var letter in word)
+            foreach(var letter in word.Trim())
             {
                 if (EXTRA_POINTS_0.Contains(letter.ToString().ToLower()))
                 {
@@ -81,6 +83,30 @@ namespace AlphaCabulary.Business.Game
             }
 
             return extraPointsScore;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        private int CalculateDoubleLetterPoints(string word)
+        {
+            if (string.IsNullOrWhiteSpace(word)) { return 0; }
+
+            var doubleLetterScore = 0;
+
+            word = word.Trim().ToLower();
+
+            for (int i = 0; i < word.Length - 1; i++)
+            {
+                if (word[i] == word[i + 1])
+                {
+                    ++doubleLetterScore;
+                }
+            }
+
+            return doubleLetterScore;
         }
     }
 }
