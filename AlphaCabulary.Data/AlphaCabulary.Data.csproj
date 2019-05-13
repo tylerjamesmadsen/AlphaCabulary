@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AlphaCabulary.ApplicationCore\AlphaCabulary.ApplicationCore.csproj" />
+    <PackageReference Include="Refit" Version="4.6.107" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dictionary\" />
+    <ProjectReference Include="..\AlphaCabulary.ApplicationCore\AlphaCabulary.ApplicationCore.csproj" />
   </ItemGroup>
 
 </Project>
