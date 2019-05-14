@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AlphaCabulary.ApplicationCore.Models
+﻿namespace AlphaCabulary.ApplicationCore.Models
 {
     public class Score
     {

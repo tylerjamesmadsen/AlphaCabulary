@@ -56,6 +56,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LetterPairsTests\GetLetterPairFromInternalShould.cs" />
     <Compile Include="ScoreCalculatorTests\ScoreCalculatorFor2SyllablesShould.cs" />
     <Compile Include="ScoreCalculatorTests\ScoreCalculatorForInvalidWordShould.cs" />
     <Compile Include="ScoreCalculatorTests\ScoreCalculatorFor1SyllableShould.cs" />
