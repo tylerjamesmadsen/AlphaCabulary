@@ -1,4 +1,5 @@
-﻿using AlphaCabulary.Business.Game;
+﻿using AlphaCabulary.ApplicationCore.Models;
+using AlphaCabulary.Business.Game;
 using AlphaCabulary.Business.WordLookup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
@@ -15,9 +16,11 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
         {
             //-- Arrange
             var calculator = new ScoreCalculator(_wordLookup);
+            const string WORD = null;
 
             //-- Act
-            int actual = await calculator.CalculateScoreAsync(null);
+            Score score = await calculator.CalculateScoreAsync(WORD);
+            int actual = (int)score?.Total;
 
             //-- Assert
             var expected = 0;
@@ -29,9 +32,11 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
         {
             //-- Arrange
             var calculator = new ScoreCalculator(_wordLookup);
+            const string WORD = "";
 
             //-- Act
-            int actual = await calculator.CalculateScoreAsync("");
+            Score score = await calculator.CalculateScoreAsync(WORD);
+            int actual = (int)score?.Total;
 
             //-- Assert
             var expected = 0;
@@ -43,9 +48,11 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
         {
             //-- Arrange
             var calculator = new ScoreCalculator(_wordLookup);
+            const string WORD = "      ";
 
             //-- Act
-            int actual = await calculator.CalculateScoreAsync("       ");
+            Score score = await calculator.CalculateScoreAsync(WORD);
+            int actual = (int)score?.Total;
 
             //-- Assert
             var expected = 0;

@@ -29,9 +29,9 @@ namespace AlphaCabulary.Business.Game
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        public async Task<int> CalculateScoreAsync(string word)
+        public async Task<Score> CalculateScoreAsync(string word)
         {
-            if (string.IsNullOrWhiteSpace(word)) { return 0; }
+            if (string.IsNullOrWhiteSpace(word)) { return new Score(); }
 
             word = word.Trim().ToLower();
             IList<WordDefinitionSyllableCount> result = await _wordLookup.GetWordDefinitionSyllableCountAsync(word);
@@ -39,13 +39,15 @@ namespace AlphaCabulary.Business.Game
 
             if (word != firstResult?.Word?.ToLower())
             {
-                return 0;
+                return new Score();
             }
 
-            var score = CalculatePointsPerLetter(word);
-            score += CalculateExtraPoints(word);
-            score += CalculateDoubleLetterPoints(word);
-            score += (int)firstResult?.NumSyllables;
+            int pointsPerLetter = CalculatePointsPerLetter(word);
+            int extraPoints = CalculateExtraPoints(word);
+            int syllablePoints = (int)firstResult?.NumSyllables;
+            int doubleLetterPoints = CalculateDoubleLetterPoints(word);
+
+            var score = new Score(pointsPerLetter, extraPoints, syllablePoints, doubleLetterPoints, 0);
 
             return score;
         }
