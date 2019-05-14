@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using AlphaCabulary.Models;
 
 namespace AlphaCabulary.ViewModels

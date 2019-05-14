@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AlphaCabulary.ApplicationCore\AlphaCabulary.ApplicationCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Dictionary\" />
+    <ProjectReference Include="..\AlphaCabulary.Data\AlphaCabulary.Data.csproj" />
   </ItemGroup>
 
 </Project>

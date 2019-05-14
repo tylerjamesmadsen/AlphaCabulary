@@ -1,20 +1,23 @@
-﻿using System;
-using AlphaCabulary.Business.Game;
+﻿using AlphaCabulary.Business.Game;
+using AlphaCabulary.Business.WordLookup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
 {
     [TestClass]
     public class ScoreCalculatorForInvalidWordShould
     {
+        private static readonly DatamuseWordLookup _wordLookup = new DatamuseWordLookup();
+
         [TestMethod]
-        public void CalculateScoreForNullWord()
+        public async Task CalculateScoreForNullWordAsync()
         {
             //-- Arrange
-            var calculator = new ScoreCalculator();
+            var calculator = new ScoreCalculator(_wordLookup);
 
             //-- Act
-            var actual = calculator.CalculateScore(null);
+            int actual = await calculator.CalculateScoreAsync(null);
 
             //-- Assert
             var expected = 0;
@@ -22,13 +25,13 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
         }
 
         [TestMethod]
-        public void CalculateScoreForEmptyString()
+        public async Task CalculateScoreForEmptyStringAsync()
         {
             //-- Arrange
-            var calculator = new ScoreCalculator();
+            var calculator = new ScoreCalculator(_wordLookup);
 
             //-- Act
-            var actual = calculator.CalculateScore("");
+            int actual = await calculator.CalculateScoreAsync("");
 
             //-- Assert
             var expected = 0;
@@ -36,13 +39,13 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
         }
 
         [TestMethod]
-        public void CalculateScoreForWhiteSpace()
+        public async Task CalculateScoreForWhiteSpaceAsync()
         {
             //-- Arrange
-            var calculator = new ScoreCalculator();
+            var calculator = new ScoreCalculator(_wordLookup);
 
             //-- Act
-            var actual = calculator.CalculateScore("       ");
+            int actual = await calculator.CalculateScoreAsync("       ");
 
             //-- Assert
             var expected = 0;

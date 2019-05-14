@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
 
 namespace AlphaCabulary.ApplicationCore.Interfaces
 {
     public interface IScoreCalculator
     {
-        int CalculateScore(string word);
+        Task<int> CalculateScoreAsync(string word);
     }
 }

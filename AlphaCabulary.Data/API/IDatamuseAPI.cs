@@ -10,6 +10,6 @@ namespace AlphaCabulary.Data.API
     public interface IDatamuseAPI
     {
         [Get("/words?sp={word}&md=ds")]
-        Task<List<WordDefinition>> GetPossibleDefinitionsAndSyllableCounts(string word);
+        Task<IList<WordDefinitionSyllableCount>> GetDefinitionsAndSyllableCounts(string word);
     }
 }

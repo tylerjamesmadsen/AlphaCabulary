@@ -1,11 +1,15 @@
 ﻿using AlphaCabulary.Business.Game;
+using AlphaCabulary.Business.WordLookup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
 {
     [TestClass]
     public class ScoreCalculatorFor2SyllablesShould
     {
+        private static readonly DatamuseWordLookup _wordLookup = new DatamuseWordLookup();
+
         //[TestMethod]
         //public void CalculateScoreWithNoExtraPoints()
         //{
@@ -77,16 +81,16 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
         //}
 
         [TestMethod]
-        public void CalculateScoreWith2DoublePairs()
+        public async Task CalculateScoreWith2DoublePairsAsync()
         {
             //-- Arrange
-            var calculator = new ScoreCalculator();
+            var calculator = new ScoreCalculator(_wordLookup);
 
             //-- Act
-            var actual = calculator.CalculateScore("teepee");
+            int actual = await calculator.CalculateScoreAsync("teepee");
 
             //-- Assert
-            var expected = 10; // 6 + (0 + 0 + 0 + 2 + 0 + 0) + 2
+            var expected = 12; // 6 + (0 + 0 + 0 + 2 + 0 + 0) + 2 + 2
             Assert.AreEqual(expected, actual);
         }
     }

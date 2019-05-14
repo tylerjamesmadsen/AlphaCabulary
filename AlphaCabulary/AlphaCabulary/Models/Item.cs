@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlphaCabulary.Models
+﻿namespace AlphaCabulary.Models
 {
     public class Item
     {
