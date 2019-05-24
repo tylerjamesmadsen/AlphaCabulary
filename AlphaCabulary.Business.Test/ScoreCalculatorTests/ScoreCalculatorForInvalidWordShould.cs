@@ -58,5 +58,21 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             var expected = 0;
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public async Task CalculateScoreForNonDictionaryWordAsync()
+        {
+            //-- Arrange
+            var calculator = new ScoreCalculator(_wordLookup);
+            const string WORD = "afdghophasg";
+
+            //-- Act
+            Score score = await calculator.CalculateScoreAsync(WORD);
+            int actual = (int)score?.Total;
+
+            //-- Assert
+            var expected = 0;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
