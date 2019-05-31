@@ -6,6 +6,6 @@ namespace AlphaCabulary.ApplicationCore.Interfaces
 {
     public interface IWordLookup
     {
-        Task<IList<WordDefinitionSyllablesPartsOfSpeech>> GetWordDefinitionSyllableCountAsync(string word);
+        Task<IList<WordDefinitionsSyllablesPartsOfSpeech>> GetWordDefinitionSyllableCountAsync(string word);
     }
 }

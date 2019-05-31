@@ -12,6 +12,22 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
         private static readonly DatamuseWordLookup _wordLookup = new DatamuseWordLookup();
 
         [TestMethod]
+        public async Task CalculateScoreForProperNounAsync()
+        {
+            //-- Arrange
+            var calculator = new ScoreCalculator(_wordLookup);
+            const string WORD = "Amanda";
+
+            //-- Act
+            var score = await calculator.CalculateScoreAsync(WORD);
+            var actual = score?.Total;
+
+            //-- Assert
+            var expected = 0;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public async Task CalculateScoreForNullWordAsync()
         {
             //-- Arrange

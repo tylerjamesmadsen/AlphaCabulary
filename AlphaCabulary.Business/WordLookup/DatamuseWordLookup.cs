@@ -13,7 +13,7 @@ namespace AlphaCabulary.Business.WordLookup
     {
         private static readonly IDatamuseApi _api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
-        public Task<IList<WordDefinitionSyllablesPartsOfSpeech>> GetWordDefinitionSyllableCountAsync(string word)
+        public Task<IList<WordDefinitionsSyllablesPartsOfSpeech>> GetWordDefinitionSyllableCountAsync(string word)
         {
             return _api.GetDefinitionsSyllablesPartsOfSpeech(word);
         }

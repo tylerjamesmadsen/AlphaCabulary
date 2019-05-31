@@ -10,6 +10,6 @@ namespace AlphaCabulary.Data.API
     public interface IDatamuseApi
     {
         [Get("/words?sp={word}&md=dps")]
-        Task<IList<WordDefinitionSyllablesPartsOfSpeech>> GetDefinitionsSyllablesPartsOfSpeech(string word);
+        Task<IList<WordDefinitionsSyllablesPartsOfSpeech>> GetDefinitionsSyllablesPartsOfSpeech(string word);
     }
 }

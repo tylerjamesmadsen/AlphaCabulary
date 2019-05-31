@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AlphaCabulary.ApplicationCore.Interfaces;
@@ -33,10 +34,16 @@ namespace AlphaCabulary.Business.Game
             if (string.IsNullOrWhiteSpace(word)) { return new Score(word); }
 
             word = word.Trim().ToUpper();
-            var result = await _wordLookup.GetWordDefinitionSyllableCountAsync(word);
-            var firstResult = result?.FirstOrDefault();
+            IList<WordDefinitionsSyllablesPartsOfSpeech> result = await _wordLookup.GetWordDefinitionSyllableCountAsync(word);
+            WordDefinitionsSyllablesPartsOfSpeech firstResult = result?.FirstOrDefault();
 
             if (word != firstResult?.Word?.ToUpper())
+            {
+                // not found in dictionary
+                return new Score(word);
+            }
+
+            if (IsProperNoun(firstResult))
             {
                 return new Score(word);
             }
@@ -49,6 +56,13 @@ namespace AlphaCabulary.Business.Game
             var score = new Score(word, pointsPerLetter, extraPoints, syllablePoints, doubleLetterPoints, 0);
 
             return score;
+        }
+
+        private static bool IsProperNoun(WordDefinitionsSyllablesPartsOfSpeech word)
+        {
+            if (word is null) { throw new ArgumentNullException(nameof(word)); }
+
+            return word.PartsOfSpeech.Contains("prop") && word.Definitions == null;
         }
 
         /// <summary>
