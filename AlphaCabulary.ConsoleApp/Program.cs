@@ -107,7 +107,7 @@ namespace AlphaCabulary.ConsoleApp
 
                 if (response != ConsoleKey.N)
                 {
-                    Console.Write("Please enter a valid response (Y/N): ");
+                    Console.Write("\nPlease enter a valid response (Y/N): ");
                 } 
             }
 
