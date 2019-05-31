@@ -94,18 +94,18 @@ namespace AlphaCabulary.ConsoleApp
         {
             Console.Write("\nPlay again? (Y/N) ");
 
-            var response = "";
+            ConsoleKey? response = null;
 
-            while (response != "Y" && response != "N")
+            while (response != ConsoleKey.Y && response != ConsoleKey.N)
             {
-                response = Console.ReadLine()?.ToUpper();
+                response = Console.ReadKey().Key;
 
-                if (response == "Y")
+                if (response == ConsoleKey.Y)
                 {
                     return true;
                 }
 
-                if (response?.ToUpper() != "N")
+                if (response != ConsoleKey.N)
                 {
                     Console.Write("Please enter a valid response (Y/N): ");
                 } 
