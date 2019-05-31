@@ -43,7 +43,7 @@ namespace AlphaCabulary.Business.Game
                 return new Score(word);
             }
 
-            if (IsProperNoun(firstResult))
+            if (IsProperNoun(firstResult.PartsOfSpeech))
             {
                 return new Score(word);
             }
@@ -58,11 +58,16 @@ namespace AlphaCabulary.Business.Game
             return score;
         }
 
-        private static bool IsProperNoun(WordDefinitionsSyllablesPartsOfSpeech word)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        private static bool IsProperNoun(IList<string> partsOfSpeech)
         {
-            if (word is null) { throw new ArgumentNullException(nameof(word)); }
+            if (partsOfSpeech is null) { throw new ArgumentNullException(nameof(partsOfSpeech)); }
 
-            return word.PartsOfSpeech.Contains("prop") && word.Definitions == null;
+            return partsOfSpeech.Contains("prop");
         }
 
         /// <summary>
