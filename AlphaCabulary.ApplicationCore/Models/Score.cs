@@ -9,8 +9,12 @@
         public int DoubleLetterPoints { get; }
         public int SubjectPoints { get; }
         public int Total => PointsPerLetter + ExtraPoints + SyllablePoints + DoubleLetterPoints + SubjectPoints;
+        public string ZeroScoreReason;
 
-        public Score(string word) : this(word, 0, 0, 0, 0, 0) { }
+        public Score(string word, string zeroScoreReason) : this(word, 0, 0, 0, 0, 0)
+        {
+            ZeroScoreReason = zeroScoreReason;
+        }
 
         public Score(string word, int pointsPerLetter, int extraPoints, int syllablePoints, int doubleLetterPoints, int subjectPoints)
         {
@@ -24,17 +28,15 @@
 
         public override string ToString()
         {
-            string message = $"Score for \"{Word}\": {Total}\n";
-
-            message += Total > 0
-                ? "   Breakdown:\n" +
-                  $"      Points per letter: {PointsPerLetter}\n" +
-                  $"      Extra points: {ExtraPoints}\n" +
-                  $"      Syllable points: {SyllablePoints}\n" +
-                  $"      Double letter points: {DoubleLetterPoints}\n"
-                : $"      Reason: {Word} not found in dictionary.";
-
-            return message;
+            return $"Score for \"{Word}\": {Total}" +
+                   (Total > 0
+                       ? "\n   Breakdown:" +
+                         $"\n      Points per letter: {PointsPerLetter}" +
+                         $"\n      Extra points: {ExtraPoints}" +
+                         $"\n      Syllable points: {SyllablePoints}" +
+                         $"\n      Double letter points: {DoubleLetterPoints}"
+                       : $"\n      Reason: {ZeroScoreReason}"
+                   );
         }
     }
 }

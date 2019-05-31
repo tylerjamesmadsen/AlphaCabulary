@@ -81,7 +81,7 @@ namespace AlphaCabulary.ConsoleApp
             foreach (Score score in scores)
             {
                 totalScore += score.Total;
-                Console.WriteLine(score.ToString());
+                Console.WriteLine("\n" + score);
             }
 
             Console.WriteLine($"\nTotal score: {totalScore}");

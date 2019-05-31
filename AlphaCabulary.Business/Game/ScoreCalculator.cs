@@ -31,7 +31,7 @@ namespace AlphaCabulary.Business.Game
         /// <returns></returns>
         public async Task<Score> CalculateScoreAsync(string word)
         {
-            if (string.IsNullOrWhiteSpace(word)) { return new Score(word); }
+            if (string.IsNullOrWhiteSpace(word)) { return new Score(word, "No word entered."); }
 
             word = word.Trim().ToUpper();
             IList<WordDefinitionsSyllablesPartsOfSpeech> result = await _wordLookup.GetWordDefinitionSyllableCountAsync(word);
@@ -39,13 +39,12 @@ namespace AlphaCabulary.Business.Game
 
             if (word != firstResult?.Word?.ToUpper())
             {
-                // not found in dictionary
-                return new Score(word);
+                return new Score(word, $"\"{word}\" is not found in the dictionary.");
             }
 
             if (IsProperNoun(firstResult.PartsOfSpeech))
             {
-                return new Score(word);
+                return new Score(word, $"\"{word}\" is a proper noun.");
             }
 
             int pointsPerLetter = CalculatePointsPerLetter(word);
