@@ -1,9 +1,8 @@
-﻿using AlphaCabulary.ApplicationCore.Interfaces;
-using AlphaCabulary.ApplicationCore.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AlphaCabulary.ApplicationCore.Interfaces;
+using AlphaCabulary.ApplicationCore.Models;
 
 namespace AlphaCabulary.Business.Game
 {
@@ -14,10 +13,10 @@ namespace AlphaCabulary.Business.Game
         // TODO: move values to config
         private const int POINTS_PER_LETTER = 1;
         private readonly int[] _extraPoints = { 1, 2, 3 };
-        private const string EXTRA_POINTS_0 = "aeiot";
-        private const string EXTRA_POINTS_1 = "dhlnrs";
-        private const string EXTRA_POINTS_2 = "bcfgmpuwy";
-        private const string EXTRA_POINTS_3 = "jkqvxz";
+        private const string EXTRA_POINTS_0 = "AEIOT";
+        private const string EXTRA_POINTS_1 = "DHLNRS";
+        private const string EXTRA_POINTS_2 = "BCFGMPUWY";
+        private const string EXTRA_POINTS_3 = "JKQVXZ";
 
         public ScoreCalculator(IWordLookup wordLookup)
         {
@@ -31,23 +30,23 @@ namespace AlphaCabulary.Business.Game
         /// <returns></returns>
         public async Task<Score> CalculateScoreAsync(string word)
         {
-            if (string.IsNullOrWhiteSpace(word)) { return new Score(); }
+            if (string.IsNullOrWhiteSpace(word)) { return new Score(word); }
 
-            word = word.Trim().ToLower();
-            IList<WordDefinitionSyllableCount> result = await _wordLookup.GetWordDefinitionSyllableCountAsync(word);
+            word = word.Trim().ToUpper();
+            var result = await _wordLookup.GetWordDefinitionSyllableCountAsync(word);
             var firstResult = result?.FirstOrDefault();
 
-            if (word != firstResult?.Word?.ToLower())
+            if (word != firstResult?.Word?.ToUpper())
             {
-                return new Score();
+                return new Score(word);
             }
 
-            int pointsPerLetter = CalculatePointsPerLetter(word);
-            int extraPoints = CalculateExtraPoints(word);
-            int syllablePoints = (int)firstResult?.NumSyllables;
-            int doubleLetterPoints = CalculateDoubleLetterPoints(word);
+            var pointsPerLetter = CalculatePointsPerLetter(word);
+            var extraPoints = CalculateExtraPoints(word);
+            var syllablePoints = (int)firstResult?.NumSyllables;
+            var doubleLetterPoints = CalculateDoubleLetterPoints(word);
 
-            var score = new Score(pointsPerLetter, extraPoints, syllablePoints, doubleLetterPoints, 0);
+            var score = new Score(word, pointsPerLetter, extraPoints, syllablePoints, doubleLetterPoints, 0);
 
             return score;
         }
@@ -57,11 +56,11 @@ namespace AlphaCabulary.Business.Game
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        private int CalculatePointsPerLetter(string word)
+        private static int CalculatePointsPerLetter(string word)
         {
             if (string.IsNullOrWhiteSpace(word)) { return 0; }
 
-            return word.Trim().Length;
+            return word.Trim().Length * POINTS_PER_LETTER;
         }
 
         /// <summary>
@@ -75,7 +74,7 @@ namespace AlphaCabulary.Business.Game
 
             var extraPointsScore = 0;
 
-            foreach (var letter in word.ToLower().Trim())
+            foreach (var letter in word.ToUpper().Trim())
             {
                 if (EXTRA_POINTS_0.Contains(letter.ToString()))
                 {
@@ -98,7 +97,6 @@ namespace AlphaCabulary.Business.Game
                 if (EXTRA_POINTS_3.Contains(letter.ToString()))
                 {
                     extraPointsScore += _extraPoints[2];
-                    continue;
                 }
             }
 
@@ -110,14 +108,14 @@ namespace AlphaCabulary.Business.Game
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        private int CalculateDoubleLetterPoints(string word)
+        private static int CalculateDoubleLetterPoints(string word)
         {
             if (string.IsNullOrWhiteSpace(word)) { return 0; }
 
             var doubleLetterScore = 0;
-            word = word.Trim().ToLower();
+            word = word.Trim().ToUpper();
 
-            for (int i = 0; i < word.Length - 1; i++)
+            for (var i = 0; i < word.Length - 1; i++)
             {
                 if (word[i] == word[i + 1])
                 {

@@ -18,7 +18,7 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseAPI>("https://api.datamuse.com");
 
             //-- act
-            IList<WordDefinitionSyllableCount> result = await api.GetDefinitionsAndSyllableCounts("pronounce");
+            var result = await api.GetDefinitionsAndSyllableCounts("pronounce");
             var actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
@@ -33,7 +33,7 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseAPI>("https://api.datamuse.com");
 
             //-- act
-            IList<WordDefinitionSyllableCount> result = await api.GetDefinitionsAndSyllableCounts("unpredictable");
+            var result = await api.GetDefinitionsAndSyllableCounts("unpredictable");
             var actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
@@ -48,7 +48,7 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseAPI>("https://api.datamuse.com");
 
             //-- act
-            IList<WordDefinitionSyllableCount> result = await api.GetDefinitionsAndSyllableCounts("antiestablishmentarianism");
+            var result = await api.GetDefinitionsAndSyllableCounts("antiestablishmentarianism");
             var actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
@@ -63,7 +63,7 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseAPI>("https://api.datamuse.com");
 
             //-- act
-            IList<WordDefinitionSyllableCount> result = await api.GetDefinitionsAndSyllableCounts("supercalifragilisticexpialidocious");
+            var result = await api.GetDefinitionsAndSyllableCounts("supercalifragilisticexpialidocious");
             var actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert

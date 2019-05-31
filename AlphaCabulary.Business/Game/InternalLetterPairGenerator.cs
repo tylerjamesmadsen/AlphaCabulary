@@ -14,7 +14,7 @@ namespace AlphaCabulary.Business.Game
 
         public string GetLetterPair()
         {
-            int randomIndex = new Random().Next(0, _pairs.Length - 1);
+            var randomIndex = new Random().Next(0, _pairs.Length - 1);
 
             return _pairs[randomIndex];
         }
