@@ -9,16 +9,35 @@ using Refit;
 namespace AlphaCabulary.Data.Test.DatamuseTests
 {
     [TestClass]
-    public class GetDefinitionAndSyllableCountShould
+    public class GetDefinitionsSyllablesPartsOfSpeechShould
     {
+        [TestMethod]
+        public async Task GetPartOfSpeechForProperNounAsync()
+        {
+            //-- arrange
+            var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
+
+            //-- act
+            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("amanda");
+            var actual = result.FirstOrDefault()?.PartsOfSpeech;
+
+            //-- assert
+            var expected = new List<string> { "n", "prop" };
+
+            for (var i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
+
         [TestMethod]
         public async Task Get2SyllableCountAsync()
         {
             //-- arrange
-            var api = RestService.For<IDatamuseAPI>("https://api.datamuse.com");
+            var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsAndSyllableCounts("pronounce");
+            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("pronounce");
             var actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
@@ -30,14 +49,14 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
         public async Task Get5SyllableCountAsync()
         {
             //-- arrange
-            var api = RestService.For<IDatamuseAPI>("https://api.datamuse.com");
+            var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsAndSyllableCounts("unpredictable");
+            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("unpredictable");
             var actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
-            var expected =5;
+            var expected = 5;
             Assert.AreEqual(expected, actual);
         }
 
@@ -45,10 +64,10 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
         public async Task Get10SyllableCountAsync()
         {
             //-- arrange
-            var api = RestService.For<IDatamuseAPI>("https://api.datamuse.com");
+            var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsAndSyllableCounts("antiestablishmentarianism");
+            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("antiestablishmentarianism");
             var actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
@@ -60,10 +79,10 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
         public async Task Get14SyllableCountAsync()
         {
             //-- arrange
-            var api = RestService.For<IDatamuseAPI>("https://api.datamuse.com");
+            var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsAndSyllableCounts("supercalifragilisticexpialidocious");
+            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("supercalifragilisticexpialidocious");
             var actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert

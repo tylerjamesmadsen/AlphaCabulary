@@ -7,9 +7,9 @@ namespace AlphaCabulary.Data.API
 {
     // https://www.datamuse.com/api/
 
-    public interface IDatamuseAPI
+    public interface IDatamuseApi
     {
-        [Get("/words?sp={word}&md=ds")]
-        Task<IList<WordDefinitionSyllableCount>> GetDefinitionsAndSyllableCounts(string word);
+        [Get("/words?sp={word}&md=dps")]
+        Task<IList<WordDefinitionSyllablesPartsOfSpeech>> GetDefinitionsSyllablesPartsOfSpeech(string word);
     }
 }
