@@ -18,8 +18,8 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("amanda");
-            var actual = result.FirstOrDefault()?.PartsOfSpeech;
+            IList<WordDefinitionsSyllablesPartsOfSpeech> result = await api.GetDefinitionsSyllablesPartsOfSpeech("amanda");
+            IList<string> actual = result.FirstOrDefault()?.PartsOfSpeech;
 
             //-- assert
             var expected = new List<string> { "n", "prop" };
@@ -37,8 +37,8 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("pronounce");
-            var actual = result.FirstOrDefault()?.NumSyllables;
+            IList<WordDefinitionsSyllablesPartsOfSpeech> result = await api.GetDefinitionsSyllablesPartsOfSpeech("pronounce");
+            int? actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
             var expected = 2;
@@ -52,12 +52,12 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("unpredictable");
-            var actual = result.FirstOrDefault()?.NumSyllables;
+            IList<WordDefinitionsSyllablesPartsOfSpeech> result = await api.GetDefinitionsSyllablesPartsOfSpeech("unpredictable");
+            int? actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
-            var expected = 5;
-            Assert.AreEqual(expected, actual);
+            const int EXPECTED = 5;
+            Assert.AreEqual(EXPECTED, actual);
         }
 
         [TestMethod]
@@ -67,11 +67,11 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("antiestablishmentarianism");
-            var actual = result.FirstOrDefault()?.NumSyllables;
+            IList<WordDefinitionsSyllablesPartsOfSpeech> result = await api.GetDefinitionsSyllablesPartsOfSpeech("antiestablishmentarianism");
+            int? actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
-            var expected = 10;
+            const int expected = 10;
             Assert.AreEqual(expected, actual);
         }
 
@@ -82,11 +82,11 @@ namespace AlphaCabulary.Data.Test.DatamuseTests
             var api = RestService.For<IDatamuseApi>("https://api.datamuse.com");
 
             //-- act
-            var result = await api.GetDefinitionsSyllablesPartsOfSpeech("supercalifragilisticexpialidocious");
-            var actual = result.FirstOrDefault()?.NumSyllables;
+            IList<WordDefinitionsSyllablesPartsOfSpeech> result = await api.GetDefinitionsSyllablesPartsOfSpeech("supercalifragilisticexpialidocious");
+            int? actual = result.FirstOrDefault()?.NumSyllables;
 
             //-- assert
-            var expected = 14;
+            const int expected = 14;
             Assert.AreEqual(expected, actual);
         }
     }

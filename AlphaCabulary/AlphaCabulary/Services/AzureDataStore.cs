@@ -10,33 +10,33 @@ namespace AlphaCabulary.Services
 {
     public class AzureDataStore : IDataStore<Item>
     {
-        HttpClient client;
-        IEnumerable<Item> items;
+        private HttpClient _client;
+        private IEnumerable<Item> _items;
 
         public AzureDataStore()
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri($"{App.AzureBackendUrl}/");
+            _client = new HttpClient();
+            _client.BaseAddress = new Uri($"{App.AzureBackendUrl}/");
 
-            items = new List<Item>();
+            _items = new List<Item>();
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
             if (forceRefresh)
             {
-                var json = await client.GetStringAsync($"api/item");
-                items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Item>>(json));
+                string json = await _client.GetStringAsync($"api/item");
+                _items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Item>>(json));
             }
 
-            return items;
+            return _items;
         }
 
         public async Task<Item> GetItemAsync(string id)
         {
             if (id != null)
             {
-                var json = await client.GetStringAsync($"api/item/{id}");
+                string json = await _client.GetStringAsync($"api/item/{id}");
                 return await Task.Run(() => JsonConvert.DeserializeObject<Item>(json));
             }
 
@@ -48,9 +48,9 @@ namespace AlphaCabulary.Services
             if (item == null)
                 return false;
 
-            var serializedItem = JsonConvert.SerializeObject(item);
+            string serializedItem = JsonConvert.SerializeObject(item);
 
-            var response = await client.PostAsync($"api/item", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await _client.PostAsync($"api/item", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
 
             return response.IsSuccessStatusCode;
         }
@@ -60,11 +60,11 @@ namespace AlphaCabulary.Services
             if (item == null || item.Id == null)
                 return false;
 
-            var serializedItem = JsonConvert.SerializeObject(item);
-            var buffer = Encoding.UTF8.GetBytes(serializedItem);
+            string serializedItem = JsonConvert.SerializeObject(item);
+            byte[] buffer = Encoding.UTF8.GetBytes(serializedItem);
             var byteContent = new ByteArrayContent(buffer);
 
-            var response = await client.PutAsync(new Uri($"api/item/{item.Id}"), byteContent);
+            HttpResponseMessage response = await _client.PutAsync(new Uri($"api/item/{item.Id}"), byteContent);
 
             return response.IsSuccessStatusCode;
         }
@@ -74,7 +74,7 @@ namespace AlphaCabulary.Services
             if (string.IsNullOrEmpty(id))
                 return false;
 
-            var response = await client.DeleteAsync($"api/item/{id}");
+            HttpResponseMessage response = await _client.DeleteAsync($"api/item/{id}");
 
             return response.IsSuccessStatusCode;
         }

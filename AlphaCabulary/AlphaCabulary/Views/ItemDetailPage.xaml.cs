@@ -10,13 +10,13 @@ namespace AlphaCabulary.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        private ItemDetailViewModel _viewModel;
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = viewModel;
+            BindingContext = this._viewModel = viewModel;
         }
 
         public ItemDetailPage()
@@ -29,8 +29,8 @@ namespace AlphaCabulary.Views
                 Description = "This is an item description."
             };
 
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
+            _viewModel = new ItemDetailViewModel(item);
+            BindingContext = _viewModel;
         }
     }
 }

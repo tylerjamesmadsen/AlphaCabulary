@@ -9,23 +9,23 @@ namespace AlphaCabulary.Controllers
     public class ItemController : Controller
     {
 
-        private readonly IItemRepository ItemRepository;
+        private readonly IItemRepository _itemRepository;
 
         public ItemController(IItemRepository itemRepository)
         {
-            ItemRepository = itemRepository;
+            _itemRepository = itemRepository;
         }
 
         [HttpGet]
         public IActionResult List()
         {
-            return Ok(ItemRepository.GetAll());
+            return Ok(_itemRepository.GetAll());
         }
 
         [HttpGet("{id}")]
         public Item GetItem(string id)
         {
-            var item = ItemRepository.Get(id);
+            Item item = _itemRepository.Get(id);
             return item;
         }
 
@@ -39,7 +39,7 @@ namespace AlphaCabulary.Controllers
                     return BadRequest("Invalid State");
                 }
 
-                ItemRepository.Add(item);
+                _itemRepository.Add(item);
 
             }
             catch (Exception)
@@ -58,7 +58,7 @@ namespace AlphaCabulary.Controllers
                 {
                     return BadRequest("Invalid State");
                 }
-                ItemRepository.Update(item);
+                _itemRepository.Update(item);
             }
             catch (Exception)
             {
@@ -70,7 +70,7 @@ namespace AlphaCabulary.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            ItemRepository.Remove(id);
+            _itemRepository.Remove(id);
         }
     }
 }

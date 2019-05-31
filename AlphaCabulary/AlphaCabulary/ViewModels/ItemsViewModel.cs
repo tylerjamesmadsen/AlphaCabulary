@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace AlphaCabulary.ViewModels
             });
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
                 return;
@@ -39,8 +40,8 @@ namespace AlphaCabulary.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                IEnumerable<Item> items = await DataStore.GetItemsAsync(true);
+                foreach (Item item in items)
                 {
                     Items.Add(item);
                 }

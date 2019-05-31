@@ -23,7 +23,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             const string WORD = "toe";
 
             //-- Act
-            var score = await calculator.CalculateScoreAsync(WORD);
+            Score score = await calculator.CalculateScoreAsync(WORD);
             var actual = (int)score?.Total;
 
             //-- Assert
@@ -39,7 +39,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             const string WORD = "HaT";
 
             //-- Act
-            var score = await calculator.CalculateScoreAsync(WORD);
+            Score score = await calculator.CalculateScoreAsync(WORD);
             var actual = (int)score?.Total;
 
             //-- Assert
@@ -55,7 +55,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             const string WORD = "jot";
 
             //-- Act
-            var score = await calculator.CalculateScoreAsync(WORD);
+            Score score = await calculator.CalculateScoreAsync(WORD);
             var actual = (int)score?.Total;
 
             //-- Assert
@@ -71,7 +71,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             const string WORD = "Bakes";
 
             //-- Act
-            var score = await calculator.CalculateScoreAsync(WORD);
+            Score score = await calculator.CalculateScoreAsync(WORD);
             var actual = (int)score?.Total;
 
             //-- Assert
@@ -87,7 +87,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             const string WORD = "TOO";
 
             //-- Act
-            var score = await calculator.CalculateScoreAsync(WORD);
+            Score score = await calculator.CalculateScoreAsync(WORD);
             var actual = (int)score?.Total;
 
             //-- Assert

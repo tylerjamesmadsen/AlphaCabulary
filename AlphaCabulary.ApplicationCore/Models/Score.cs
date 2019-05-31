@@ -24,7 +24,7 @@
 
         public override string ToString()
         {
-            var message = $"Score for \"{Word}\": {Total}\n";
+            string message = $"Score for \"{Word}\": {Total}\n";
 
             message += Total > 0
                 ? "   Breakdown:\n" +

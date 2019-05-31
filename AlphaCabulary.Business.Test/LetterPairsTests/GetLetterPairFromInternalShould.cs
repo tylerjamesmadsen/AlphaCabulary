@@ -25,7 +25,7 @@ namespace AlphaCabulary.Business.Test.LetterPairsTests
             //-- arrange
 
             //-- act
-            var actual = _pairGenerator.GetLetterPair();
+            string actual = _pairGenerator.GetLetterPair();
 
             //-- assert
             Assert.IsTrue(_pool.Contains(actual));
@@ -37,10 +37,10 @@ namespace AlphaCabulary.Business.Test.LetterPairsTests
             //-- arrange
 
             //-- act
-            var actual = _pairGenerator.GetLetterPair(0);
+            string actual = _pairGenerator.GetLetterPair(0);
 
             //-- assert
-            var expected = _pool[0];
+            string expected = _pool[0];
             Assert.AreEqual(expected, actual);
         }
     }

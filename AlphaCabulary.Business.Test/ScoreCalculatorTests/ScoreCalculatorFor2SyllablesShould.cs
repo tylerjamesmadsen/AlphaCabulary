@@ -89,7 +89,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             const string WORD = "teepee";
 
             //-- Act
-            var score = await calculator.CalculateScoreAsync(WORD);
+            Score score = await calculator.CalculateScoreAsync(WORD);
             var actual = (int)score?.Total;
 
             //-- Assert

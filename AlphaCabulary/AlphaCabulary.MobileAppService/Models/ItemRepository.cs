@@ -6,7 +6,7 @@ namespace AlphaCabulary.Models
 {
     public class ItemRepository : IItemRepository
     {
-        private static ConcurrentDictionary<string, Item> items =
+        private static ConcurrentDictionary<string, Item> _items =
             new ConcurrentDictionary<string, Item>();
 
         public ItemRepository()
@@ -18,24 +18,24 @@ namespace AlphaCabulary.Models
 
         public Item Get(string id)
         {
-            return items[id];
+            return _items[id];
         }
 
         public IEnumerable<Item> GetAll()
         {
-            return items.Values;
+            return _items.Values;
         }
 
         public void Add(Item item)
         {
             item.Id = Guid.NewGuid().ToString();
-            items[item.Id] = item;
+            _items[item.Id] = item;
         }
 
         public Item Find(string id)
         {
             Item item;
-            items.TryGetValue(id, out item);
+            _items.TryGetValue(id, out item);
 
             return item;
         }
@@ -43,14 +43,14 @@ namespace AlphaCabulary.Models
         public Item Remove(string id)
         {
             Item item;
-            items.TryRemove(id, out item);
+            _items.TryRemove(id, out item);
 
             return item;
         }
 
         public void Update(Item item)
         {
-            items[item.Id] = item;
+            _items[item.Id] = item;
         }
     }
 }

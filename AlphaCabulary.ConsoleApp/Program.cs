@@ -42,7 +42,7 @@ namespace AlphaCabulary.ConsoleApp
         /// <returns></returns>
         private static async Task RunGameAsync()
         {
-            var numWords = PromptForNumWords();
+            int numWords = PromptForNumWords();
 
             const string MESSAGE = "\nComplete each word by adding letters to the provided pair." +
                                    "\nPress any key to start...";
@@ -52,17 +52,17 @@ namespace AlphaCabulary.ConsoleApp
             Console.WriteLine("\n");
 
             var pairGenerator = new InternalLetterPairGenerator();
-            var pairs = GenerateMultipleLetterPairs(pairGenerator, numWords);
+            IEnumerable<string> pairs = GenerateMultipleLetterPairs(pairGenerator, numWords);
             var scores = new List<Score>();
             var wordLookup = new DatamuseWordLookup();
             var scoreCalculator = new ScoreCalculator(wordLookup);
 
-            foreach (var pair in pairs)
+            foreach (string pair in pairs)
             {
                 Console.Write(pair);
 
-                var userEntry = pair + Console.ReadLine()?.Trim();
-                var score = await scoreCalculator.CalculateScoreAsync(userEntry);
+                string userEntry = pair + Console.ReadLine()?.Trim();
+                Score score = await scoreCalculator.CalculateScoreAsync(userEntry);
 
                 scores.Add(score);
             }
@@ -78,7 +78,7 @@ namespace AlphaCabulary.ConsoleApp
         {
             var totalScore = 0;
 
-            foreach (var score in scores)
+            foreach (Score score in scores)
             {
                 totalScore += score.Total;
                 Console.WriteLine(score.ToString());
@@ -126,7 +126,7 @@ namespace AlphaCabulary.ConsoleApp
 
             while (numWords < 1)
             {
-                var response = Console.ReadLine();
+                string response = Console.ReadLine();
 
                 if (!int.TryParse(response, out numWords))
                 {
@@ -155,7 +155,7 @@ namespace AlphaCabulary.ConsoleApp
 
             for (var i = 0; i < pairs.Length; i++)
             {
-                var pair = pairGenerator.GetLetterPair();
+                string pair = pairGenerator.GetLetterPair();
 
                 if (i > 0)
                 {

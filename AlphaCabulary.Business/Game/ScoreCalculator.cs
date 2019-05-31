@@ -48,10 +48,10 @@ namespace AlphaCabulary.Business.Game
                 return new Score(word);
             }
 
-            var pointsPerLetter = CalculatePointsPerLetter(word);
-            var extraPoints = CalculateExtraPoints(word);
+            int pointsPerLetter = CalculatePointsPerLetter(word);
+            int extraPoints = CalculateExtraPoints(word);
             var syllablePoints = (int)firstResult?.NumSyllables;
-            var doubleLetterPoints = CalculateDoubleLetterPoints(word);
+            int doubleLetterPoints = CalculateDoubleLetterPoints(word);
 
             var score = new Score(word, pointsPerLetter, extraPoints, syllablePoints, doubleLetterPoints, 0);
 
@@ -93,7 +93,7 @@ namespace AlphaCabulary.Business.Game
 
             var extraPointsScore = 0;
 
-            foreach (var letter in word.ToUpper().Trim())
+            foreach (char letter in word.ToUpper().Trim())
             {
                 if (EXTRA_POINTS_0.Contains(letter.ToString()))
                 {

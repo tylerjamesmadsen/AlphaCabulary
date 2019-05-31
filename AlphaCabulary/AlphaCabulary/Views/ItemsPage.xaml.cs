@@ -11,20 +11,18 @@ namespace AlphaCabulary.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        private ItemsViewModel _viewModel;
 
         public ItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new ItemsViewModel();
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
-            if (item == null)
-                return;
+            if (!(args.SelectedItem is Item item)) { return; }
 
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
@@ -32,7 +30,7 @@ namespace AlphaCabulary.Views
             ItemsListView.SelectedItem = null;
         }
 
-        async void AddItem_Clicked(object sender, EventArgs e)
+        private async void AddItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
@@ -41,8 +39,8 @@ namespace AlphaCabulary.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            if (_viewModel.Items.Count == 0)
+                _viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }
