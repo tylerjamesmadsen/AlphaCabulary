@@ -60,9 +60,8 @@ namespace AlphaCabulary.ConsoleApp
             foreach (string pair in pairs)
             {
                 Console.Write(pair);
-
-                string userEntry = pair + Console.ReadLine()?.Trim();
-                Score score = await scoreCalculator.CalculateScoreAsync(userEntry);
+                string word = pair + Console.ReadLine()?.Trim();
+                Score score = await scoreCalculator.CalculateScoreAsync(word);
 
                 scores.Add(score);
             }
