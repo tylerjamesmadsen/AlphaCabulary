@@ -20,20 +20,29 @@ namespace AlphaCabulary.ConsoleApp
         /// <returns></returns>
         private static async Task Main(string[] args)
         {
-            const string TITLE = "#################\n" +
-                                 "# AlphaCabulary #\n" +
-                                 "#################";
+            DisplayTitle();
 
-            Console.WriteLine($"{TITLE}");
-
-            var playGame = true;
-
-            while (playGame)
+            do
             {
                 await RunGameAsync();
+            } while (PromptForPlayGame());
+        }
 
-                playGame = PromptForPlayGame();
-            }
+        /// <summary>
+        /// Displays a colorful title.
+        /// </summary>
+        private static void DisplayTitle()
+        {
+            Console.Write("#############\n#   ");
+            ConsoleHelper.WriteInColor(() => Console.Write("A"), ConsoleColor.Red);
+            ConsoleHelper.WriteInColor(() => Console.Write("L"), ConsoleColor.Blue);
+            ConsoleHelper.WriteInColor(() => Console.Write("P"), ConsoleColor.Yellow);
+            ConsoleHelper.WriteInColor(() => Console.Write("H"), ConsoleColor.Green);
+            ConsoleHelper.WriteInColor(() => Console.Write("A"), ConsoleColor.Red);
+            Console.WriteLine("   #");
+            Console.WriteLine("# -cabulary #");
+            Console.WriteLine("#############");
+
         }
 
         /// <summary>
@@ -116,7 +125,7 @@ namespace AlphaCabulary.ConsoleApp
             return false;
         }
 
-        
+
 
         /// <summary>
         /// Displays the score with color formatting.
