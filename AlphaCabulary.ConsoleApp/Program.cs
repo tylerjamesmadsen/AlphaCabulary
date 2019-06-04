@@ -52,15 +52,15 @@ namespace AlphaCabulary.ConsoleApp
             Console.WriteLine("\n");
 
             var pairGenerator = new InternalLetterPairGenerator();
-            IEnumerable<string> pairs = GenerateMultipleLetterPairs(pairGenerator, numWords);
+            IEnumerable<string> pairs = new PairGenerationFactory(pairGenerator).GenerateMultipleLetterPairs(numWords);
             var scores = new List<Score>();
             var wordLookup = new DatamuseWordLookup();
             var scoreCalculator = new ScoreCalculator(wordLookup);
 
             foreach (string pair in pairs)
             {
-                Console.Write(pair);
-                string word = pair + Console.ReadLine()?.Trim();
+                ConsoleHelper.WriteInColor(() => Console.Write(pair), ConsoleColor.Yellow);
+                string word = pair + ConsoleHelper.ReadInColor(() => Console.ReadLine()?.Trim(), ConsoleColor.Cyan);
                 Score score = await scoreCalculator.CalculateScoreAsync(word);
 
                 scores.Add(score);
@@ -80,10 +80,12 @@ namespace AlphaCabulary.ConsoleApp
             foreach (Score score in scores)
             {
                 totalScore += score.Total;
-                Console.WriteLine("\n" + score);
+                Console.WriteLine();
+                DisplayScore(score);
             }
 
-            Console.WriteLine($"\nTotal score: {totalScore}");
+            Console.Write("\nTotal score: ");
+            ConsoleHelper.WriteInColor(() => Console.WriteLine(totalScore), ConsoleColor.Magenta);
         }
 
         /// <summary>
@@ -98,7 +100,7 @@ namespace AlphaCabulary.ConsoleApp
 
             while (response != ConsoleKey.Y && response != ConsoleKey.N)
             {
-                response = Console.ReadKey().Key;
+                response = ConsoleHelper.ReadInColor(() => Console.ReadKey().Key, ConsoleColor.Cyan);
 
                 if (response == ConsoleKey.Y)
                 {
@@ -107,11 +109,45 @@ namespace AlphaCabulary.ConsoleApp
 
                 if (response != ConsoleKey.N)
                 {
-                    Console.Write("\nPlease enter a valid response (Y/N): ");
-                } 
+                    ConsoleHelper.WriteInColor(() => Console.Write("\nPlease enter a valid response (Y/N): "), ConsoleColor.Red);
+                }
             }
 
             return false;
+        }
+
+        
+
+        /// <summary>
+        /// Displays the score with color formatting.
+        /// </summary>
+        /// <param name="score"></param>
+        private static void DisplayScore(Score score)
+        {
+            Console.Write("Score for ");
+            ConsoleHelper.WriteInColor(() => Console.Write($"\"{score.Word}\""), ConsoleColor.Yellow);
+            Console.Write(": ");
+            ConsoleHelper.WriteInColor(() => Console.Write($"{score.Total}"), score.Total > 0 ? ConsoleColor.Green : ConsoleColor.Gray);
+
+            if (score.Total > 0)
+            {
+                Console.Write("\n   Breakdown:");
+                Console.Write("\n      Points per letter: ");
+                ConsoleHelper.WriteInColor(() => Console.Write(score.PointsPerLetter), ConsoleColor.Blue);
+                Console.Write("\n      Extra points: ");
+                ConsoleHelper.WriteInColor(() => Console.Write(score.ExtraPoints), ConsoleColor.Blue);
+                Console.Write("\n      Syllable points: ");
+                ConsoleHelper.WriteInColor(() => Console.Write(score.SyllablePoints), ConsoleColor.Blue);
+                Console.Write("\n      Double letter points: ");
+                ConsoleHelper.WriteInColor(() => Console.Write(score.DoubleLetterPoints), ConsoleColor.Blue);
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.Write("\n      Reason: ");
+                ConsoleHelper.WriteInColor(() => Console.Write(score.ZeroScoreReason), ConsoleColor.Red);
+                Console.WriteLine();
+            }
         }
 
         /// <summary>
@@ -125,7 +161,7 @@ namespace AlphaCabulary.ConsoleApp
 
             while (numWords < 1)
             {
-                string response = Console.ReadLine();
+                string response = ConsoleHelper.ReadInColor(Console.ReadLine, ConsoleColor.Cyan);
 
                 if (!int.TryParse(response, out numWords))
                 {
@@ -140,34 +176,6 @@ namespace AlphaCabulary.ConsoleApp
             }
 
             return numWords;
-        }
-
-        /// <summary>
-        /// Generates the letter pairs.
-        /// </summary>
-        /// <param name="pairGenerator"></param>
-        /// <param name="numPairs"></param>
-        /// <returns>A IEnumerable of the string type.</returns>
-        private static IEnumerable<string> GenerateMultipleLetterPairs(ILetterPairGenerator pairGenerator, int numPairs)
-        {
-            var pairs = new string[numPairs];
-
-            for (var i = 0; i < pairs.Length; i++)
-            {
-                string pair = pairGenerator.GetLetterPair();
-
-                if (i > 0)
-                {
-                    while (pairs[i - 1] == pair)
-                    {
-                        pair = pairGenerator.GetLetterPair();
-                    }
-                }
-
-                pairs[i] = pair;
-            }
-
-            return pairs;
         }
     }
 }
