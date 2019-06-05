@@ -1,18 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Timers;
 using AlphaCabulary.Business.Game;
 using AlphaCabulary.Business.WordLookup;
-using AlphaCabulary.ApplicationCore.Interfaces;
 using AlphaCabulary.ApplicationCore.Models;
-using AlphaCabulary.Data.API;
 
 namespace AlphaCabulary.ConsoleApp
 {
     internal class Program
     {
+        [DllImport("User32.Dll", EntryPoint = "PostMessageA")]
+        private static extern bool PostMessage(IntPtr hWnd, uint msg, int wParam, int lParam);
+
+        const int VK_RETURN = 0x0D;
+        const int WM_KEYDOWN = 0x100;
+
         /// <summary>
         /// The main entry to the program.
         /// </summary>
@@ -52,9 +57,18 @@ namespace AlphaCabulary.ConsoleApp
         private static async Task RunGameAsync()
         {
             int numWords = PromptForNumWords();
+            int millisecondsPerWord = PromptForSecondsPerWord() * 1000;
+
+            var timer = new Timer(millisecondsPerWord);
+            timer.Elapsed += (sender, args) =>
+            {
+                ConsoleHelper.WriteInColor(() => Console.WriteLine("\nTimed out."), ConsoleColor.Red);
+                IntPtr hWnd = Process.GetCurrentProcess().MainWindowHandle;
+                PostMessage(hWnd, WM_KEYDOWN, VK_RETURN, 0);
+            };
 
             const string MESSAGE = "\nComplete each word by adding letters to the provided pair." +
-                                   "\nPress any key to start...";
+                                   "\n\nPress any key to start...";
 
             Console.Write(MESSAGE);
             Console.ReadKey();
@@ -69,13 +83,52 @@ namespace AlphaCabulary.ConsoleApp
             foreach (string pair in pairs)
             {
                 ConsoleHelper.WriteInColor(() => Console.Write(pair), ConsoleColor.Yellow);
-                string word = pair + ConsoleHelper.ReadInColor(() => Console.ReadLine()?.Trim(), ConsoleColor.Cyan);
+
+                timer.Start();
+                string word = pair + ConsoleHelper.ReadInColor(Console.ReadLine, ConsoleColor.Cyan)?.Trim();
                 Score score = await scoreCalculator.CalculateScoreAsync(word);
 
                 scores.Add(score);
             }
 
+            timer.Stop();
+
             DisplayResults(scores);
+        }
+
+        private void SendEnterToConsole()
+        {
+            IntPtr hWnd = Process.GetCurrentProcess().MainWindowHandle;
+            PostMessage(hWnd, WM_KEYDOWN, VK_RETURN, 0);
+        }
+
+        /// <summary>
+        /// Prompts for the number of seconds per word.
+        /// </summary>
+        /// <returns></returns>
+        private static int PromptForSecondsPerWord()
+        {
+            Console.Write("\nHow many seconds per word? ");
+            var seconds = 0;
+
+            while (seconds < 5)
+            {
+                string response = ConsoleHelper.ReadInColor(Console.ReadLine, ConsoleColor.Cyan);
+
+                if (!int.TryParse(response, out seconds))
+                {
+                    Console.Write("Please enter a valid number: ");
+                    continue;
+                }
+
+                if (seconds < 5)
+                {
+                    Console.WriteLine("The minimum is 5 seconds.");
+                    Console.Write("Please enter a valid number: ");
+                }
+            }
+
+            return seconds;
         }
 
         /// <summary>
@@ -174,13 +227,13 @@ namespace AlphaCabulary.ConsoleApp
 
                 if (!int.TryParse(response, out numWords))
                 {
-                    Console.Write("Please enter a valid number: ");
+                    ConsoleHelper.WriteInColor(() => Console.Write("Please enter a valid number: "), ConsoleColor.Red);
                     continue;
                 }
 
                 if (numWords <= 0)
                 {
-                    Console.Write("Please enter a number greater than 0: ");
+                    ConsoleHelper.WriteInColor(() => Console.Write("Please enter a number greater than 0: "), ConsoleColor.Red);
                 }
             }
 
