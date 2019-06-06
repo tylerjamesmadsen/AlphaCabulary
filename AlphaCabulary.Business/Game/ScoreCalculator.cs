@@ -32,7 +32,7 @@ namespace AlphaCabulary.Business.Game
         public async Task<Score> CalculateScoreAsync(string word)
         {
             if (string.IsNullOrWhiteSpace(word)) { return new Score(word, "Word is blank."); }
-            if (word.Length == 2) { return new Score(word, $"\"{word}\" was skipped.");}
+            if (word.Length == 2) { return new Score(word, $"\"{word}\" was skipped."); }
 
             word = word.Trim().ToUpper();
             IList<WordDefinitionsSyllablesPartsOfSpeech> result = await _wordLookup.GetWordDefinitionSyllableCountAsync(word);
