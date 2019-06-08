@@ -89,6 +89,7 @@ namespace AlphaCabulary.ConsoleApp.CrossPlatform
 
                 timer.Start();
                 string word = pair + ConsoleHelper.ReadInColor(Console.ReadLine, ConsoleColor.Cyan)?.Trim();
+                timer.Stop();
 
                 Score score = null;
                 try
@@ -102,8 +103,6 @@ namespace AlphaCabulary.ConsoleApp.CrossPlatform
 
                 scores.Add(score ?? new Score(word, "Word lookup unavailable."));
             }
-
-            timer.Stop();
 
             DisplayResults(scores);
         }

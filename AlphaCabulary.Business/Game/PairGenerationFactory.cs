@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AlphaCabulary.ApplicationCore.Interfaces;
 
 namespace AlphaCabulary.Business.Game
@@ -7,6 +8,7 @@ namespace AlphaCabulary.Business.Game
     public class PairGenerationFactory
     {
         private readonly ILetterPairGenerator _generator;
+        private const int MAX_TRIES = 3;
 
         public PairGenerationFactory(ILetterPairGenerator generator)
         {
@@ -27,12 +29,11 @@ namespace AlphaCabulary.Business.Game
             {
                 string pair = _generator.GetLetterPair();
 
-                if (i > 0)
+                var numTries = 0;
+                while (pairs.Contains(pair) && numTries < MAX_TRIES)
                 {
-                    while (pairs[i - 1] == pair)
-                    {
-                        pair = _generator.GetLetterPair();
-                    }
+                    pair = _generator.GetLetterPair();
+                    ++numTries;
                 }
 
                 pairs[i] = pair;
