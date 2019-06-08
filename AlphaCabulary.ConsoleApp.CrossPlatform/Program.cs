@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Configuration;
 using AlphaCabulary.ApplicationCore.Models;
 using AlphaCabulary.Business.Game;
 using AlphaCabulary.Business.WordLookup;
@@ -61,13 +62,13 @@ namespace AlphaCabulary.ConsoleApp.CrossPlatform
             int numWords = PromptForNumWords();
             int millisecondsPerWord = PromptForSecondsPerWord() * 1000;
 
-            //var timer = new Timer(millisecondsPerWord);
-            //timer.Elapsed += (sender, args) =>
-            //{
-            //    IntPtr hWnd = Process.GetCurrentProcess().MainWindowHandle;
-            //    PostMessage(hWnd, WM_KEYDOWN, VK_RETURN, 0);
-            //    ConsoleHelper.WriteInColor(() => Console.WriteLine("\nTimed out."), ConsoleColor.Red);
-            //};
+            var timer = new Timer(millisecondsPerWord);
+            timer.Elapsed += (sender, args) =>
+            {
+                IntPtr hWnd = Process.GetCurrentProcess().MainWindowHandle;
+                PostMessage(hWnd, WM_KEYDOWN, VK_RETURN, 0);
+                ConsoleHelper.WriteInColor(() => Console.WriteLine("\nTimed out."), ConsoleColor.Red);
+            };
 
             const string MESSAGE = "\nComplete each word by adding letters to the provided pair." +
                                    "\n\nPress any key to start...";
@@ -86,7 +87,7 @@ namespace AlphaCabulary.ConsoleApp.CrossPlatform
             {
                 ConsoleHelper.WriteInColor(() => Console.Write(pair), ConsoleColor.Yellow);
 
-                //timer.Start();
+                timer.Start();
                 string word = pair + ConsoleHelper.ReadInColor(Console.ReadLine, ConsoleColor.Cyan)?.Trim();
 
                 Score score = null;
@@ -102,7 +103,7 @@ namespace AlphaCabulary.ConsoleApp.CrossPlatform
                 scores.Add(score ?? new Score(word, "Word lookup unavailable."));
             }
 
-            //timer.Stop();
+            timer.Stop();
 
             DisplayResults(scores);
         }
