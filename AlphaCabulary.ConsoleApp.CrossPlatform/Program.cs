@@ -107,12 +107,6 @@ namespace AlphaCabulary.ConsoleApp.CrossPlatform
             DisplayResults(scores);
         }
 
-        private void SendEnterToConsole()
-        {
-            IntPtr hWnd = Process.GetCurrentProcess().MainWindowHandle;
-            PostMessage(hWnd, WM_KEYDOWN, VK_RETURN, 0);
-        }
-
         /// <summary>
         /// Prompts for the number of seconds per word.
         /// </summary>
