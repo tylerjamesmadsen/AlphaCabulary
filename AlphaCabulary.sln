@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaCabulary.Data", "Alpha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaCabulary.Data.Test", "AlphaCabulary.Data.Test\AlphaCabulary.Data.Test.csproj", "{82ABDB02-58A1-416F-B3F1-07D65EF52FBB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaCabulary.ConsoleApp.CrossPlatform", "AlphaCabulary.ConsoleApp.CrossPlatform\AlphaCabulary.ConsoleApp.CrossPlatform.csproj", "{65D8CFA0-AECE-417C-86AB-784D9B2DDD16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaCabulary.CLI.CrossPlatform", "AlphaCabulary.ConsoleApp.CrossPlatform\AlphaCabulary.CLI.CrossPlatform.csproj", "{65D8CFA0-AECE-417C-86AB-784D9B2DDD16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
