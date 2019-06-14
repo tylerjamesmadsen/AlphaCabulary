@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="36c9705b-c4d9-4d8d-ad7b-3e03d8f019c7"
-    Publisher="CN=0cf17854-208f-4ef8-95f4-c3091f632748"
+    Name="af56fa1c-4774-49ee-922d-9b95a265348b"
+    Publisher="CN=ac7e8c58-f1eb-4124-911b-88e31f07ca50"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>AlphaCabulary.UWP</DisplayName>
-    <PublisherDisplayName>0cf17854-208f-4ef8-95f4-c3091f632748</PublisherDisplayName>
+    <PublisherDisplayName>ac7e8c58-f1eb-4124-911b-88e31f07ca50</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
