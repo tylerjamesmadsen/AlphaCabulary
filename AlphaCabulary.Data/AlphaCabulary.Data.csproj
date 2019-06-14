@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Refit" Version="4.7.9" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
   </ItemGroup>
 
   <ItemGroup>
