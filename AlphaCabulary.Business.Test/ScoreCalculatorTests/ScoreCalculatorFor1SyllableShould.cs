@@ -1,9 +1,7 @@
 ﻿using AlphaCabulary.ApplicationCore.Models;
 using AlphaCabulary.Business.Game;
 using AlphaCabulary.Business.WordLookup;
-using AlphaCabulary.Data.API;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Refit;
 using System.Threading.Tasks;
 
 namespace AlphaCabulary.Business.Test.ScoreCalculatorTests

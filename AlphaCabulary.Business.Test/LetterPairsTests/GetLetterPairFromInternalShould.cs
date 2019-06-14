@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AlphaCabulary.ApplicationCore.Interfaces;
 using AlphaCabulary.Business.Game;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

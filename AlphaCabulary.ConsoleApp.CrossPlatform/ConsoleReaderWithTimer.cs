@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace AlphaCabulary.ConsoleApp.CrossPlatform
+namespace AlphaCabulary.CLI.CrossPlatform
 {
     public static class ConsoleReaderWithTimer
     {

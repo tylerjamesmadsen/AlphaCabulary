@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlphaCabulary.ConsoleApp.CrossPlatform
+namespace AlphaCabulary.CLI.CrossPlatform
 {
     public static class ConsoleHelper
     {

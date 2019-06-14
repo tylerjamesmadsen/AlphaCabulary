@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AlphaCabulary.ApplicationCore.Models._tmp;
 using SQLite;
 
-namespace Notes.Data
+namespace AlphaCabulary.Data.LocalDb
 {
     public class NoteDatabase
     {

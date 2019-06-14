@@ -4,12 +4,11 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Timers;
-using System.Configuration;
 using AlphaCabulary.ApplicationCore.Models;
 using AlphaCabulary.Business.Game;
 using AlphaCabulary.Business.WordLookup;
 
-namespace AlphaCabulary.ConsoleApp.CrossPlatform
+namespace AlphaCabulary.CLI.CrossPlatform
 {
     internal class Program
     {

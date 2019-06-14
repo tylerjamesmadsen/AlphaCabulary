@@ -2,9 +2,7 @@
 using AlphaCabulary.ApplicationCore.Models;
 using AlphaCabulary.Data.API;
 using Refit;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AlphaCabulary.Business.WordLookup

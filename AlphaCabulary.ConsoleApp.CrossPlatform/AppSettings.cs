@@ -1,6 +1,6 @@
 ﻿using AlphaCabulary.ApplicationCore.Models;
 
-namespace AlphaCabulary.ConsoleApp.CrossPlatform
+namespace AlphaCabulary.CLI.CrossPlatform
 {
     public class AppSettings
     {

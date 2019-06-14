@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using Notes.Data;
+using AlphaCabulary.Data.LocalDb;
+using AlphaCabulary.Pages;
 using Xamarin.Forms;
 
 namespace AlphaCabulary
