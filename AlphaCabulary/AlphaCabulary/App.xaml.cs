@@ -17,7 +17,7 @@ namespace AlphaCabulary
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new NotesPage());
+            MainPage = new NavigationPage(new HomePage());
         }
 
         protected override void OnStart()

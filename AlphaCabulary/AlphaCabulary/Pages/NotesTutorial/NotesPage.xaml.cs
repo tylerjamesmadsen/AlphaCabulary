@@ -2,7 +2,7 @@
 using AlphaCabulary.ApplicationCore.Models._tmp;
 using Xamarin.Forms;
 
-namespace AlphaCabulary.Pages
+namespace AlphaCabulary.Pages.NotesTutorial
 {
     public partial class NotesPage : ContentPage
     {
