@@ -7,11 +7,13 @@
              x:Class="AlphaCabulary.Pages.HomePage">
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="alphacabulary_logo.png" />
-            <Button Text="Play" Clicked="OnPlayButtonClicked" BackgroundColor="#193E04" TextColor="#FFFFFF" />
-            <Button Text="Instructions" Clicked="OnInstructionsButtonClicked" BackgroundColor="#7E1514" TextColor="#FFFFFF" />
-            <Button Text="Settings" Clicked="OnSettingsButtonClicked" BackgroundColor="#050A4D" TextColor="#FFFFFF"/>
-            <Button Text="High Scores" Clicked="OnHighScoresButtonClicked" BackgroundColor="#9A4417" TextColor="#FFFFFF"/>
+            <Image Source="alphacabulary_logo.png" Margin="100,10" />
+            <StackLayout Padding="100">
+                <Button Text="Play" Clicked="OnPlayButtonClicked" BackgroundColor="#193E04" TextColor="#FFFFFF" />
+                <Button Text="Instructions" Clicked="OnInstructionsButtonClicked" BackgroundColor="#7E1514" TextColor="#FFFFFF" />
+                <Button Text="Settings" Clicked="OnSettingsButtonClicked" BackgroundColor="#050A4D" TextColor="#FFFFFF"/>
+                <Button Text="High Scores" Clicked="OnHighScoresButtonClicked" BackgroundColor="#9A4417" TextColor="#FFFFFF"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
