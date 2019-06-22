@@ -7,13 +7,13 @@ namespace AlphaCabulary.ApplicationCore.Catalog.Utilities
 {
     public class Timer : ITimer
     {
-        public event EventHandler OnTick;
+        public event EventHandler<TimerEventArgs> TimerTickEventHandler;
 
-        public async Task Start(int numSeconds)
+        public async Task StartAsync(int numSeconds)
         {
             while (numSeconds > 0)
             {
-                OnTick?.Invoke(this, new TimerEventArgs(numSeconds));
+                TimerTickEventHandler?.Invoke(this, new TimerEventArgs(numSeconds));
 
                 await Task.Delay(1000); // one second tick
 

@@ -7,6 +7,9 @@
              x:Class="AlphaCabulary.Pages.GamePage">
     <ContentPage.Content>
         <StackLayout>
+
+            <Label x:Name="TimerLabel" Text="" />
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -28,7 +31,7 @@
                 <Editor Grid.Column="1" Grid.Row="2" Keyboard="Text"/>
                 <Label Text="TEST" Grid.Column="0" Grid.Row="3"/>
                 <Editor Grid.Column="1" Grid.Row="3" Keyboard="Text"/>
-                
+
             </Grid>
 
 

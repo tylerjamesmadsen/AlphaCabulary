@@ -4,11 +4,11 @@ using AlphaCabulary.Business.Services;
 
 namespace AlphaCabulary.Business.Factories
 {
-    public class TimerServiceFactory : IFactory<ITimerService>
+    public class TimerFactory : IFactory<ITimer>
     {
-        public ITimerService Create()
+        public ITimer Create()
         {
-            return new TimerService(new Timer());
+            return new Timer();
         }
     }
 }

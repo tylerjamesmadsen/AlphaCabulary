@@ -2,12 +2,18 @@
 {
     public class TimerEventArgs : System.EventArgs
     {
-        public int Seconds;
-        public int Minutes => Seconds % 60;
+        public int Seconds { get; }
+        public int Minutes { get; }
 
         public TimerEventArgs(int seconds)
         {
-            Seconds = seconds;
+            Minutes = seconds / 60;
+            Seconds = seconds - Minutes * 60;
+        }
+
+        public override string ToString()
+        {
+            return (Minutes > 9 ? $"{Minutes}" : $"0{Minutes}") + ":" + (Seconds > 9 ? $"{Seconds}" : $"0{Seconds}");
         }
     }
 }

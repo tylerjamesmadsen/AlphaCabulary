@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
 
 namespace AlphaCabulary.Business.Services
@@ -6,26 +7,26 @@ namespace AlphaCabulary.Business.Services
     public class GameService : IGameService
     {
         private readonly ILetterPairGenerator _letterPairGenerator;
-        private readonly ITimerService _timerService;
+        public ITimer Timer { get; }
 
         public bool IsRunning { get; set; }
 
-        public GameService(ILetterPairGenerator letterPairGenerator, ITimerService timerService)
+        public GameService(ILetterPairGenerator letterPairGenerator, ITimer timerService)
         {
             _letterPairGenerator = letterPairGenerator ?? throw new ArgumentNullException(nameof(letterPairGenerator));
-            _timerService = timerService ?? throw new ArgumentNullException(nameof(timerService));
+            Timer = timerService ?? throw new ArgumentNullException(nameof(timerService));
         }
 
-        public void Start()
+        public async Task StartAsync(int numSeconds)
         {
 
 
-            _timerService.Start(TODO);
+            await Timer.StartAsync(numSeconds);
         }
 
         public void Stop(bool isCancelled)
         {
-            _timerService.Stop();
+            Timer.Stop();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace AlphaCabulary
             InitializeComponent();
 
             var letterPairGeneratorFactory = new InternalLetterPairGeneratorFactory();
-            var timerServiceFactory = new TimerServiceFactory();
+            var timerServiceFactory = new TimerFactory();
             IGameService gameService = new GameServiceFactory(letterPairGeneratorFactory, timerServiceFactory).Create();
 
             MainPage = new NavigationPage(new HomePage(gameService));

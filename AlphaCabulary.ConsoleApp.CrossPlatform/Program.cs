@@ -77,7 +77,7 @@ namespace AlphaCabulary.CLI.CrossPlatform
             Console.WriteLine("\n");
 
             var pairGenerator = new InternalLetterPairGenerator();
-            IEnumerable<string> pairs = new PairGenerationFactory(pairGenerator).GenerateMultipleLetterPairs(numWords);
+            IEnumerable<string> pairs = new MultipleInternalLetterPairGenerator(pairGenerator).GenerateMultipleLetterPairs(numWords);
             var scores = new List<Score>();
             var wordLookup = new DatamuseWordLookup();
             var scoreCalculator = new ScoreCalculator(wordLookup);

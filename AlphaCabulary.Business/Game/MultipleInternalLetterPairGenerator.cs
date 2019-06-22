@@ -5,12 +5,12 @@ using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
 
 namespace AlphaCabulary.Business.Game
 {
-    public class PairGenerationFactory
+    public class MultipleInternalLetterPairGenerator
     {
         private readonly ILetterPairGenerator _generator;
         private const int MAX_TRIES = 3;
 
-        public PairGenerationFactory(ILetterPairGenerator generator)
+        public MultipleInternalLetterPairGenerator(ILetterPairGenerator generator)
         {
             _generator = generator ?? throw new ArgumentException(nameof(generator));
         }
