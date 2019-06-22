@@ -1,4 +1,4 @@
-﻿using AlphaCabulary.ApplicationCore.Models;
+﻿using AlphaCabulary.ApplicationCore.Catalog.Models;
 using AlphaCabulary.Business.Game;
 using AlphaCabulary.Business.WordLookup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

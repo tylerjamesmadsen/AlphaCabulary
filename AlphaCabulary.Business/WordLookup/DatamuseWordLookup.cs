@@ -1,5 +1,5 @@
-﻿using AlphaCabulary.ApplicationCore.Interfaces;
-using AlphaCabulary.ApplicationCore.Models;
+﻿using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
+using AlphaCabulary.ApplicationCore.Catalog.Models;
 using AlphaCabulary.Data.API;
 using Refit;
 using System.Collections.Generic;

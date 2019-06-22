@@ -1,4 +1,4 @@
-﻿using AlphaCabulary.ApplicationCore.Models;
+﻿using AlphaCabulary.ApplicationCore.Catalog.Models;
 using Refit;
 using System.Collections.Generic;
 using System.Threading.Tasks;

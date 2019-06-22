@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AlphaCabulary.ApplicationCore.Interfaces;
+using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
 
-namespace AlphaCabulary.ApplicationCore.Models
+namespace AlphaCabulary.ApplicationCore.Catalog.Models
 {
     public class ScoreSettings : IScoreSettings
     {

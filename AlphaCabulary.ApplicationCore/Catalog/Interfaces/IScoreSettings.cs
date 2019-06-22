@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AlphaCabulary.ApplicationCore.Interfaces
+namespace AlphaCabulary.ApplicationCore.Catalog.Interfaces
 {
     public interface IScoreSettings
     {

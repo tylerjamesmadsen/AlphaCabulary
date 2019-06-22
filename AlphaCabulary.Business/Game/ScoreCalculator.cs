@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AlphaCabulary.ApplicationCore.Interfaces;
-using AlphaCabulary.ApplicationCore.Models;
+using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
+using AlphaCabulary.ApplicationCore.Catalog.Models;
 
 namespace AlphaCabulary.Business.Game
 {

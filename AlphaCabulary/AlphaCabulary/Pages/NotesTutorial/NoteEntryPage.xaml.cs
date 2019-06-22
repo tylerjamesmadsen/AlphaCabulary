@@ -1,5 +1,5 @@
 ﻿using System;
-using AlphaCabulary.ApplicationCore.Models._tmp;
+using AlphaCabulary.ApplicationCore.Catalog.Models._tmp;
 using Xamarin.Forms;
 
 namespace AlphaCabulary.Pages.NotesTutorial

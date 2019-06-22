@@ -1,4 +1,4 @@
-﻿namespace AlphaCabulary.ApplicationCore.Interfaces
+﻿namespace AlphaCabulary.ApplicationCore.Catalog.Interfaces
 {
     public interface ILetterPairGenerator
     {

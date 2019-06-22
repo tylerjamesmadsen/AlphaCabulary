@@ -1,4 +1,4 @@
-﻿namespace AlphaCabulary.ApplicationCore.Models
+﻿namespace AlphaCabulary.ApplicationCore.Catalog.Models
 {
     public class Score
     {

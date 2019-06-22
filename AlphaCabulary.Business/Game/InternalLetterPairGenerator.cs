@@ -1,4 +1,4 @@
-﻿using AlphaCabulary.ApplicationCore.Interfaces;
+﻿using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
 using System;
 
 namespace AlphaCabulary.Business.Game

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AlphaCabulary.ApplicationCore.Models;
+using AlphaCabulary.ApplicationCore.Catalog.Models;
 using AlphaCabulary.Data.API;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refit;

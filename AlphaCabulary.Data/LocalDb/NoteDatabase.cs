@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AlphaCabulary.ApplicationCore.Models._tmp;
+using AlphaCabulary.ApplicationCore.Catalog.Models._tmp;
 using SQLite;
 
 namespace AlphaCabulary.Data.LocalDb

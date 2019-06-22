@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace AlphaCabulary.ApplicationCore.Models._tmp
+namespace AlphaCabulary.ApplicationCore.Catalog.Models._tmp
 {
     public class Note
     {

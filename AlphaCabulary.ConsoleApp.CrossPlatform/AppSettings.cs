@@ -1,4 +1,4 @@
-﻿using AlphaCabulary.ApplicationCore.Models;
+﻿using AlphaCabulary.ApplicationCore.Catalog.Models;
 
 namespace AlphaCabulary.CLI.CrossPlatform
 {
