@@ -23,6 +23,11 @@ namespace AlphaCabulary.Business.Game
         /// <returns>An IEnumerable of the string type.</returns>
         public IEnumerable<string> GenerateMultipleLetterPairs(int numPairs)
         {
+            if (numPairs == 1)
+            {
+                return new List<string> { _generator.GetLetterPair() };
+            }
+
             var pairs = new string[numPairs];
 
             for (var i = 0; i < pairs.Length; i++)

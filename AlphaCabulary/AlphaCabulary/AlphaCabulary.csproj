@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AlphaCabulary.Business\AlphaCabulary.Business.csproj" />
     <ProjectReference Include="..\..\AlphaCabulary.Data\AlphaCabulary.Data.csproj" />
   </ItemGroup>
 

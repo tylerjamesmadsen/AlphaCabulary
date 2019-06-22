@@ -21,14 +21,18 @@
                 </Grid.RowDefinitions>
 
                 <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor Grid.Column="1" Grid.Row="0"/>
+                <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label Text="TEST" Grid.Column="0" Grid.Row="1"/>
-                <Editor Grid.Column="1" Grid.Row="1"/>
+                <Editor Grid.Column="1" Grid.Row="1" Keyboard="Text"/>
                 <Label Text="TEST" Grid.Column="0" Grid.Row="2"/>
-                <Editor Grid.Column="1" Grid.Row="2"/>
+                <Editor Grid.Column="1" Grid.Row="2" Keyboard="Text"/>
                 <Label Text="TEST" Grid.Column="0" Grid.Row="3"/>
-                <Editor Grid.Column="1" Grid.Row="3"/>
+                <Editor Grid.Column="1" Grid.Row="3" Keyboard="Text"/>
+                
             </Grid>
+
+
+            <Button Text="Start!" Clicked="OnStartStopButtonClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

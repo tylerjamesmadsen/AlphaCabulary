@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
+using AlphaCabulary.Business.Factories;
 using AlphaCabulary.Data.LocalDb;
 using AlphaCabulary.Pages;
 using Xamarin.Forms;
@@ -17,7 +19,12 @@ namespace AlphaCabulary
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new HomePage());
+
+            var letterPairGeneratorFactory = new InternalLetterPairGeneratorFactory();
+            var timerServiceFactory = new TimerServiceFactory();
+            IGameService gameService = new GameServiceFactory(letterPairGeneratorFactory, timerServiceFactory).Create();
+
+            MainPage = new NavigationPage(new HomePage(gameService));
         }
 
         protected override void OnStart()
