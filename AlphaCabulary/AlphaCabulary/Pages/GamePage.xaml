@@ -8,34 +8,92 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <Label x:Name="TimerLabel" Text="" />
-
-            <Grid>
+            <Grid x:Name="StartGrid">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Button x:Name="StartStopButton" Text="Start!" Clicked="StartStopButton_OnClicked"
+                        Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                <Label x:Name="TimerLabel" Text="" Grid.Column="1" Grid.Row="0"/>
+
+            </Grid>
+
+            <Grid x:Name="WordGrid1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
                 <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
-                <Label Text="TEST" Grid.Column="0" Grid.Row="1"/>
-                <Editor Grid.Column="1" Grid.Row="1" Keyboard="Text"/>
-                <Label Text="TEST" Grid.Column="0" Grid.Row="2"/>
-                <Editor Grid.Column="1" Grid.Row="2" Keyboard="Text"/>
-                <Label Text="TEST" Grid.Column="0" Grid.Row="3"/>
-                <Editor Grid.Column="1" Grid.Row="3" Keyboard="Text"/>
-
             </Grid>
 
+            <Grid x:Name="WordGrid2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-            <Button Text="Start!" Clicked="OnStartStopButtonClicked"/>
+                <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+            </Grid>
+
+            <Grid x:Name="WordGrid3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+            </Grid>
+
+            <Grid x:Name="WordGrid4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+            </Grid>
+
+            <Grid x:Name="ScoreGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Text="Total Score" Grid.Column="0" Grid.Row="0"></Label>
+                <Label x:Name="TotalScoreCountLabel" Grid.Column="0" Grid.Row="1"></Label>
+                <Image Source="alphacabulary_logo.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

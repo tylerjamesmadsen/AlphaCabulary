@@ -36,10 +36,10 @@ namespace AlphaCabulary.Pages
 
         private void OnTimerTick(object sender, TimerEventArgs e)
         {
-            TimerLabel.Text = $"{e.ToString()}";
+            TimerLabel.Text = $"{e}";
         }
 
-        private void OnStartStopButtonClicked(object sender, EventArgs e)
+        private void StartStopButton_OnClicked(object sender, EventArgs e)
         {
             if (_gameService.IsRunning)
             {
