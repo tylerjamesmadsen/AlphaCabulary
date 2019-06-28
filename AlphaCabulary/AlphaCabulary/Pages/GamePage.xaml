@@ -34,7 +34,8 @@
                 </Grid.RowDefinitions>
 
                 <Label x:Name="LetterPair0" Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Editor x:Name="UserEntryEditor0" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Label x:Name="WordScore0" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 
             <Grid x:Name="WordGrid2">
@@ -48,7 +49,8 @@
                 </Grid.RowDefinitions>
 
                 <Label x:Name="LetterPair1" Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Editor x:Name="UserEntryEditor1" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Label x:Name="WordScore1" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 
             <Grid x:Name="WordGrid3">
@@ -62,7 +64,8 @@
                 </Grid.RowDefinitions>
 
                 <Label x:Name="LetterPair2" Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Editor x:Name="UserEntryEditor2" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Label x:Name="WordScore2" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 
             <Grid x:Name="WordGrid4">
@@ -76,7 +79,8 @@
                 </Grid.RowDefinitions>
 
                 <Label x:Name="LetterPair3" Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Editor x:Name="UserEntryEditor3" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Label x:Name="WordScore3" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 
             <Grid x:Name="ScoreGrid">
@@ -90,7 +94,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Text="Total Score" Grid.Column="0" Grid.Row="0"></Label>
-                <Label x:Name="TotalScoreCountLabel" Grid.Column="0" Grid.Row="1"></Label>
+                <Label x:Name="TotalScore" Grid.Column="0" Grid.Row="1"></Label>
                 <Image Source="alphacabulary_logo.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"/>
             </Grid>
         </StackLayout>

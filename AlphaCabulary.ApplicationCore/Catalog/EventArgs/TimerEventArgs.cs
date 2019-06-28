@@ -2,11 +2,13 @@
 {
     public class TimerEventArgs : System.EventArgs
     {
+        public int TotalSeconds { get; }
         public int Seconds { get; }
         public int Minutes { get; }
 
         public TimerEventArgs(int seconds)
         {
+            TotalSeconds = seconds;
             Minutes = seconds / 60;
             Seconds = seconds - Minutes * 60;
         }

@@ -1,6 +1,8 @@
 ﻿using System;
 using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
+using AlphaCabulary.Business.Game;
 using AlphaCabulary.Business.Services;
+using AlphaCabulary.Business.WordLookup;
 
 namespace AlphaCabulary.Business.Factories
 {
@@ -17,11 +19,11 @@ namespace AlphaCabulary.Business.Factories
 
         public IGameService Create()
         {
-
             ILetterPairGenerator letterPairGenerator = _letterPairGeneratorFactory.Create();
             ITimer timerService = _timerFactory.Create();
 
-            return new GameService(letterPairGenerator, timerService);
+
+            return new GameService(letterPairGenerator, timerService, /*TODO*/ new ScoreCalculator(new DatamuseWordLookup()));
         }
     }
 }
