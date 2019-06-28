@@ -20,23 +20,45 @@ namespace AlphaCabulary.Pages
             _gameService = gameService ?? throw new ArgumentNullException(nameof(gameService));
 
             InitializeComponent();
+        }
 
+        protected override void OnAppearing()
+        {
             SubscribeToCustomEvents();
+        }
+
+        protected override void OnDisappearing()
+        {
+            // TODO: confirm cancel/exit
+
+            _gameService.Stop(true);
+
+            UnsubscribeFromCustomEvents();
         }
 
         private void SubscribeToCustomEvents()
         {
             _gameService.Timer.TimerTickEventHandler += OnTimerTick;
+            _gameService.LetterPairsGeneratedEventHandler += OnLetterPairsGenerated;
         }
 
         private void UnsubscribeFromCustomEvents()
         {
             _gameService.Timer.TimerTickEventHandler -= OnTimerTick;
+            _gameService.LetterPairsGeneratedEventHandler -= OnLetterPairsGenerated;
         }
 
         private void OnTimerTick(object sender, TimerEventArgs e)
         {
-            TimerLabel.Text = $"{e}";
+            TimerLabel.Text = $"Time Remaining: {e}";
+        }
+
+        private void OnLetterPairsGenerated(object sender, LetterPairEventArgs e)
+        {
+            LetterPair0.Text = e.LetterPairs[0];
+            LetterPair1.Text = e.LetterPairs[1];
+            LetterPair2.Text = e.LetterPairs[2];
+            LetterPair3.Text = e.LetterPairs[3];
         }
 
         private void StartStopButton_OnClicked(object sender, EventArgs e)
@@ -44,10 +66,27 @@ namespace AlphaCabulary.Pages
             if (_gameService.IsRunning)
             {
                 _gameService.Stop(true);
+                ToggleStartStopButtonStyle(false);
+
                 return;
             }
 
-            _gameService.StartAsync(180/*TODO: use time from settings*/);
+            ToggleStartStopButtonStyle(true);
+            // TODO: use time and numPairs from settings
+            _gameService.Start(180, 4);
+        }
+
+        private void ToggleStartStopButtonStyle(bool isStopButton)
+        {
+            if (isStopButton)
+            {
+                StartStopButton.Text = "Stop";
+                StartStopButton.BackgroundColor = (Color)Application.Current.Resources["AlphacabularyRed"];
+                return;
+            }
+
+            StartStopButton.Text = "Start!";
+            StartStopButton.BackgroundColor = (Color)Application.Current.Resources["AlphacabularyGreen"];
         }
     }
 }

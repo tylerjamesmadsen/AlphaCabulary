@@ -21,22 +21,22 @@ namespace AlphaCabulary.Pages
             InitializeComponent();
         }
 
-        private async void OnPlayButtonClicked(object sender, EventArgs e)
+        private async void PlayButton_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new GamePage(_gameService));
         }
 
-        private async void OnInstructionsButtonClicked(object sender, EventArgs e)
+        private async void InstructionsButton_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new InstructionsPage());
         }
 
-        private async void OnSettingsButtonClicked(object sender, EventArgs e)
+        private async void SettingsButton_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new GameSettingsPage());
         }
 
-        private async void OnHighScoresButtonClicked(object sender, EventArgs e)
+        private async void HighScoresButton_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new HighScoresPage());
         }

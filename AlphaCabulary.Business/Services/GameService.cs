@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AlphaCabulary.ApplicationCore.Catalog.EventArgs;
 using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
 
 namespace AlphaCabulary.Business.Services
@@ -7,9 +9,10 @@ namespace AlphaCabulary.Business.Services
     public class GameService : IGameService
     {
         private readonly ILetterPairGenerator _letterPairGenerator;
-        public ITimer Timer { get; }
+        public event EventHandler<LetterPairEventArgs> LetterPairsGeneratedEventHandler;
 
-        public bool IsRunning { get; set; }
+        public ITimer Timer { get; }
+        public bool IsRunning { get; private set; }
 
         public GameService(ILetterPairGenerator letterPairGenerator, ITimer timerService)
         {
@@ -17,15 +20,31 @@ namespace AlphaCabulary.Business.Services
             Timer = timerService ?? throw new ArgumentNullException(nameof(timerService));
         }
 
-        public async Task StartAsync(int numSeconds)
+        public void Start(int numSeconds, int numPairs)
         {
+            IsRunning = true;
 
+            InitializeLetterPairs(numPairs);
+            Timer.StartAsync(numSeconds);
+        }
 
-            await Timer.StartAsync(numSeconds);
+        private void InitializeLetterPairs(int numPairs)
+        {
+            var letterPairs = new List<string>(numPairs);
+
+            while (numPairs > 0)
+            {
+                letterPairs.Add(_letterPairGenerator.GetLetterPair());
+                --numPairs;
+            }
+
+            LetterPairsGeneratedEventHandler?.Invoke(this, new LetterPairEventArgs(letterPairs));
         }
 
         public void Stop(bool isCancelled)
         {
+            IsRunning = false;
+
             Timer.Stop();
         }
     }

@@ -18,9 +18,8 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Button x:Name="StartStopButton" Text="Start!" Clicked="StartStopButton_OnClicked"
-                        Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
-                <Label x:Name="TimerLabel" Text="" Grid.Column="1" Grid.Row="0"/>
+                <Button x:Name="StartStopButton" Text="Start!" BackgroundColor="{StaticResource AlphacabularyGreen}" Clicked="StartStopButton_OnClicked" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                <Label x:Name="TimerLabel" Grid.Column="1" Grid.Row="0"/>
 
             </Grid>
 
@@ -34,7 +33,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="LetterPair0" Text="TEST" Grid.Column="0" Grid.Row="0"/>
                 <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
             </Grid>
 
@@ -48,7 +47,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="LetterPair1" Text="TEST" Grid.Column="0" Grid.Row="0"/>
                 <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
             </Grid>
 
@@ -62,7 +61,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="LetterPair2" Text="TEST" Grid.Column="0" Grid.Row="0"/>
                 <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
             </Grid>
 
@@ -76,7 +75,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="LetterPair3" Text="TEST" Grid.Column="0" Grid.Row="0"/>
                 <Editor Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
             </Grid>
 

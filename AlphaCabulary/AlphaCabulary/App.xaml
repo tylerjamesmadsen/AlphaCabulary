@@ -12,6 +12,10 @@
         <Color x:Key="AndroidNavigationBarColor">#2196F3</Color>
         <Color x:Key="iOSNavigationBarTextColor">Black</Color>
         <Color x:Key="AndroidNavigationBarTextColor">White</Color>
+        <Color x:Key="AlphacabularyRed">#7D0306</Color>
+        <Color x:Key="AlphacabularyBlue">#000A47</Color>
+        <Color x:Key="AlphacabularyYellow">#9D460A</Color>
+        <Color x:Key="AlphacabularyGreen">#044403</Color>
 
         <!-- Implicit styles -->
         <Style TargetType="{x:Type NavigationPage}">

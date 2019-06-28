@@ -8,10 +8,13 @@ namespace AlphaCabulary.ApplicationCore.Catalog.Utilities
     public class Timer : ITimer
     {
         public event EventHandler<TimerEventArgs> TimerTickEventHandler;
+        private bool _isRunning;
 
         public async Task StartAsync(int numSeconds)
         {
-            while (numSeconds > 0)
+            _isRunning = true;
+
+            while (numSeconds >= 0 && _isRunning)
             {
                 TimerTickEventHandler?.Invoke(this, new TimerEventArgs(numSeconds));
 
@@ -23,7 +26,7 @@ namespace AlphaCabulary.ApplicationCore.Catalog.Utilities
 
         public void Stop()
         {
-            throw new System.NotImplementedException();
+            _isRunning = false;
         }
     }
 }
