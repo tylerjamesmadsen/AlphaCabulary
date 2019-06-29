@@ -7,9 +7,9 @@ namespace AlphaCabulary.ApplicationCore.Catalog.Interfaces
 {
     public interface IGameService
     {
-        event EventHandler<LetterPairEventArgs> LetterPairsGeneratedEventHandler;
-        event EventHandler<TimerEventArgs> GameTimerTickedEventHandler;
-        event EventHandler<GameScoreEventArgs> GameScoreCalculatedEventHandler;
+        event EventHandler<LetterPairEventArgs> LetterPairGenerationEventHandler;
+        event EventHandler<TimerEventArgs> GameTimerTickEventHandler;
+        event EventHandler<GameScoreEventArgs> GameScoreCalculationEventHandler;
 
         bool IsRunning { get; }
 

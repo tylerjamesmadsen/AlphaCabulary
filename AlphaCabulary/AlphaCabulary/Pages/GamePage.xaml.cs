@@ -38,16 +38,16 @@ namespace AlphaCabulary.Pages
 
         private void SubscribeToCustomEvents()
         {
-            _gameService.GameTimerTickedEventHandler += OnGameTimerTick;
-            _gameService.LetterPairsGeneratedEventHandler += OnLetterPairsGenerated;
-            _gameService.GameScoreCalculatedEventHandler += OnGameScoreCalculated;
+            _gameService.GameTimerTickEventHandler += OnGameTimerTick;
+            _gameService.LetterPairGenerationEventHandler += OnLetterPairsGenerated;
+            _gameService.GameScoreCalculationEventHandler += OnGameScoreCalculated;
         }
 
         private void UnsubscribeFromCustomEvents()
         {
-            _gameService.GameTimerTickedEventHandler -= OnGameTimerTick;
-            _gameService.LetterPairsGeneratedEventHandler -= OnLetterPairsGenerated;
-            _gameService.GameScoreCalculatedEventHandler -= OnGameScoreCalculated;
+            _gameService.GameTimerTickEventHandler -= OnGameTimerTick;
+            _gameService.LetterPairGenerationEventHandler -= OnLetterPairsGenerated;
+            _gameService.GameScoreCalculationEventHandler -= OnGameScoreCalculated;
         }
 
         private async void OnGameTimerTick(object sender, TimerEventArgs e)
@@ -80,10 +80,19 @@ namespace AlphaCabulary.Pages
 
         private void OnGameScoreCalculated(object sender, GameScoreEventArgs e)
         {
-            WordScore0.Text += e.Scores[0].Total;
-            WordScore1.Text += e.Scores[1].Total;
-            WordScore2.Text += e.Scores[2].Total;
-            WordScore3.Text += e.Scores[3].Total;
+            WordScore0.Text += e.Scores[0].WordScore;
+            WordScore1.Text += e.Scores[1].WordScore;
+            WordScore2.Text += e.Scores[2].WordScore;
+            WordScore3.Text += e.Scores[3].WordScore;
+
+            WordScore0.IsVisible = true;
+            WordScore1.IsVisible = true;
+            WordScore2.IsVisible = true;
+            WordScore3.IsVisible = true;
+
+            TotalScore.Text = (e.Scores[0].WordScore + e.Scores[1].WordScore + e.Scores[2].WordScore + e.Scores[3].WordScore).ToString();
+            TotalScore.IsVisible = true;
+            TotalScoreLabel.IsVisible = true;
         }
 
         private void StartStopButton_OnClicked(object sender, EventArgs e)
@@ -98,7 +107,7 @@ namespace AlphaCabulary.Pages
 
             ToggleStartStopButtonStyle(true);
             // TODO: use time and numPairs from settings
-            _gameService.Start(30, 4);
+            _gameService.Start(10, 4);
         }
 
         private void ToggleStartStopButtonStyle(bool isStopButton)

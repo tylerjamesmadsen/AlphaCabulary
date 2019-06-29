@@ -90,7 +90,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
 
             //-- Act
             Score score = await calculator.CalculateScoreAsync(WORD);
-            var actual = (int)score?.Total;
+            var actual = (int)score?.WordScore;
 
             //-- Assert
             var expected = 12; // 6 + (0 + 0 + 0 + 2 + 0 + 0) + 2 + 2

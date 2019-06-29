@@ -145,7 +145,7 @@ namespace AlphaCabulary.CLI.CrossPlatform
 
             foreach (Score score in scores)
             {
-                totalScore += score.Total;
+                totalScore += score.WordScore;
                 Console.WriteLine();
                 DisplayScore(score);
             }
@@ -193,9 +193,9 @@ namespace AlphaCabulary.CLI.CrossPlatform
             Console.Write("Score for ");
             ConsoleHelper.WriteInColor(() => Console.Write($"\"{score.Word}\""), ConsoleColor.Yellow);
             Console.Write(": ");
-            ConsoleHelper.WriteInColor(() => Console.Write($"{score.Total}"), score.Total > 0 ? ConsoleColor.Green : ConsoleColor.Gray);
+            ConsoleHelper.WriteInColor(() => Console.Write($"{score.WordScore}"), score.WordScore > 0 ? ConsoleColor.Green : ConsoleColor.Gray);
 
-            if (score.Total > 0)
+            if (score.WordScore > 0)
             {
                 Console.Write("\n   Breakdown:");
                 Console.Write("\n      Points per letter: ");

@@ -8,7 +8,7 @@
         public int SyllablePoints { get; }
         public int DoubleLetterPoints { get; }
         public int SubjectPoints { get; }
-        public int Total => PointsPerLetter + ExtraPoints + SyllablePoints + DoubleLetterPoints + SubjectPoints;
+        public int WordScore => PointsPerLetter + ExtraPoints + SyllablePoints + DoubleLetterPoints + SubjectPoints;
         public string ZeroScoreReason;
 
         public Score(string word, string zeroScoreReason) : this(word, 0, 0, 0, 0, 0)
@@ -28,8 +28,8 @@
 
         public override string ToString()
         {
-            return $"Score for \"{Word}\": {Total}" +
-                   (Total > 0
+            return $"Score for \"{Word}\": {WordScore}" +
+                   (WordScore > 0
                        ? "\n   Breakdown:" +
                          $"\n      Points per letter: {PointsPerLetter}" +
                          $"\n      Extra points: {ExtraPoints}" +

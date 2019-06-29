@@ -9,9 +9,9 @@ namespace AlphaCabulary.Business.Services
 {
     public class GameService : IGameService
     {
-        public event EventHandler<LetterPairEventArgs> LetterPairsGeneratedEventHandler;
-        public event EventHandler<TimerEventArgs> GameTimerTickedEventHandler;
-        public event EventHandler<GameScoreEventArgs> GameScoreCalculatedEventHandler;
+        public event EventHandler<LetterPairEventArgs> LetterPairGenerationEventHandler;
+        public event EventHandler<TimerEventArgs> GameTimerTickEventHandler;
+        public event EventHandler<GameScoreEventArgs> GameScoreCalculationEventHandler;
 
         public bool IsRunning { get; private set; }
 
@@ -25,7 +25,22 @@ namespace AlphaCabulary.Business.Services
             _timer = timer ?? throw new ArgumentNullException(nameof(timer));
             _scoreCalculator = scoreCalculator ?? throw new ArgumentException(nameof(scoreCalculator));
 
-            GameTimerTickedEventHandler += OnTimerTick;
+            SubscribeToCustomEvents();
+        }
+
+        ~GameService()
+        {
+            UnsubscribeFromCustomEvents();
+        }
+
+        private void SubscribeToCustomEvents()
+        {
+            _timer.TimerTickEventHandler += OnTimerTick;
+        }
+
+        private void UnsubscribeFromCustomEvents()
+        {
+            _timer.TimerTickEventHandler -= OnTimerTick;
         }
 
         public void Start(int numSeconds, int numPairs)
@@ -38,7 +53,7 @@ namespace AlphaCabulary.Business.Services
 
         private void OnTimerTick(object sender, TimerEventArgs e)
         {
-            GameTimerTickedEventHandler?.Invoke(this, e);
+            GameTimerTickEventHandler?.Invoke(this, e);
         }
 
         private void InitializeLetterPairs(int numPairs)
@@ -51,7 +66,7 @@ namespace AlphaCabulary.Business.Services
                 --numPairs;
             }
 
-            LetterPairsGeneratedEventHandler?.Invoke(this, new LetterPairEventArgs(letterPairs));
+            LetterPairGenerationEventHandler?.Invoke(this, new LetterPairEventArgs(letterPairs));
         }
 
         public void Stop(bool isCancelled)
@@ -71,7 +86,7 @@ namespace AlphaCabulary.Business.Services
                 scores.Add(score);
             }
 
-            GameScoreCalculatedEventHandler?.Invoke(this, new GameScoreEventArgs(scores));
+            GameScoreCalculationEventHandler?.Invoke(this, new GameScoreEventArgs(scores));
         }
     }
 }
