@@ -9,15 +9,19 @@ namespace AlphaCabulary.Business.Services
 {
     public class GameService : IGameService
     {
-        public event EventHandler<LetterPairEventArgs> LetterPairGenerationEventHandler;
-        public event EventHandler<TimerEventArgs> GameTimerTickEventHandler;
-        public event EventHandler<GameScoreEventArgs> GameScoreCalculationEventHandler;
+        public event EventHandler<LetterPairsEventArgs> LetterPairsGenerated;
+        public event EventHandler<TimerEventArgs> TimerTicked;
+        public event EventHandler<GameScoreEventArgs> ScoreCalculated;
+        public event EventHandler<EventArgs> GameStarted;
+        public event EventHandler<EventArgs> GameFinished;
+        public event EventHandler<EventArgs> GameCancelled;
 
-        public bool IsRunning { get; private set; }
+        private bool _isRunning;
 
         private readonly ILetterPairGenerator _letterPairGenerator;
         private readonly ITimer _timer;
         private readonly IScoreCalculator _scoreCalculator;
+        private readonly IDictionary<string, string> _wordDictionary = new Dictionary<string, string>();
 
         public GameService(ILetterPairGenerator letterPairGenerator, ITimer timer, IScoreCalculator scoreCalculator)
         {
@@ -43,50 +47,69 @@ namespace AlphaCabulary.Business.Services
             _timer.TimerTickEventHandler -= OnTimerTick;
         }
 
-        public void Start(int numSeconds, int numPairs)
+        public void StartCancel()
         {
-            IsRunning = true;
+            if (_isRunning)
+            {
+                Cancel();
+                return;
+            }
 
-            InitializeLetterPairs(numPairs);
-            _timer.StartAsync(numSeconds);
+            _isRunning = !_isRunning;
+
+            Start();
+        }
+
+        private void Start()
+        {
+            GameStarted?.Invoke(this, EventArgs.Empty);
+
+            IList<string> letterPairs = _letterPairGenerator.GetLetterPairList(4);
+            LetterPairsGenerated?.Invoke(this, new LetterPairsEventArgs(letterPairs)); // TODO: use numPairs from settings
+            _timer.StartAsync(10); // TODO: use time from settings
+        }
+
+        private void Cancel()
+        {
+            Stop();
+            GameCancelled?.Invoke(this, EventArgs.Empty);
+            return;
         }
 
         private void OnTimerTick(object sender, TimerEventArgs e)
         {
-            GameTimerTickEventHandler?.Invoke(this, e);
-        }
+            TimerTicked?.Invoke(this, e);
 
-        private void InitializeLetterPairs(int numPairs)
-        {
-            var letterPairs = new List<string>(numPairs);
-
-            while (numPairs > 0)
+            if (e.TotalSeconds == 0)
             {
-                letterPairs.Add(_letterPairGenerator.GetLetterPair());
-                --numPairs;
+                GameFinished?.Invoke(this, EventArgs.Empty);
             }
-
-            LetterPairGenerationEventHandler?.Invoke(this, new LetterPairEventArgs(letterPairs));
         }
 
-        public void Stop(bool isCancelled)
+        public void Stop()
         {
-            IsRunning = false;
+            _isRunning = false;
 
             _timer.Stop();
         }
 
-        public async Task CalculateScoresAsync(IList<string> words)
+        public async Task CalculateScoresAsync()
         {
             var scores = new List<Score>();
 
-            foreach (string word in words)
+            foreach (KeyValuePair<string, string> pair in _wordDictionary)
             {
+                string word = pair.Key + pair.Value.Trim();
                 Score score = await _scoreCalculator.CalculateScoreAsync(word);
                 scores.Add(score);
             }
 
-            GameScoreCalculationEventHandler?.Invoke(this, new GameScoreEventArgs(scores));
+            ScoreCalculated?.Invoke(this, new GameScoreEventArgs(scores));
+        }
+
+        public void UpdateWordDictionary(string key, string userEnteredText)
+        {
+            _wordDictionary[key] = userEnteredText;
         }
     }
 }

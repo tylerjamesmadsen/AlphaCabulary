@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace AlphaCabulary.ApplicationCore.Catalog.EventArgs
 {
-    public class LetterPairEventArgs : System.EventArgs
+    public class LetterPairsEventArgs : System.EventArgs
     {
         public IList<string> LetterPairs { get; }
 
-        public LetterPairEventArgs(IList<string> letterPairs)
+        public LetterPairsEventArgs(IList<string> letterPairs)
         {
             LetterPairs = letterPairs;
         }

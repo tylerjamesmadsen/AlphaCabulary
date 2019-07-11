@@ -1,5 +1,6 @@
 ﻿using AlphaCabulary.ApplicationCore.Catalog.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace AlphaCabulary.Business.Game
 {
@@ -24,6 +25,19 @@ namespace AlphaCabulary.Business.Game
             if (index < 0 || index > _pairs.Length - 1) { throw new ArgumentOutOfRangeException(nameof(index)); }
 
             return _pairs[index];
+        }
+
+        public IList<string> GetLetterPairList(int numPairs)
+        {
+            var letterPairs = new List<string>(numPairs);
+
+            while (numPairs > 0)
+            {
+                letterPairs.Add(GetLetterPair());
+                --numPairs;
+            }
+
+            return letterPairs;
         }
     }
 }
