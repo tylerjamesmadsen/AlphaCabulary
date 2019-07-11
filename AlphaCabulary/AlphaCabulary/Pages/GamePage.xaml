@@ -34,7 +34,7 @@
                 </Grid.RowDefinitions>
 
                 <Label x:Name="LetterPair1" Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor x:Name="UserEntryEditor1" TextChanged="UserEntryEditor_OnTextChanged" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Editor x:Name="UserEntryEditor1" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label x:Name="WordScore1" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 
@@ -49,7 +49,7 @@
                 </Grid.RowDefinitions>
 
                 <Label x:Name="LetterPair2" Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor x:Name="UserEntryEditor2" TextChanged="UserEntryEditor_OnTextChanged" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Editor x:Name="UserEntryEditor2" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label x:Name="WordScore2" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 
@@ -64,7 +64,7 @@
                 </Grid.RowDefinitions>
 
                 <Label x:Name="LetterPair3" Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor x:Name="UserEntryEditor3" TextChanged="UserEntryEditor_OnTextChanged" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Editor x:Name="UserEntryEditor3" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label x:Name="WordScore3" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 
@@ -79,7 +79,7 @@
                 </Grid.RowDefinitions>
 
                 <Label x:Name="LetterPair4" Text="TEST" Grid.Column="0" Grid.Row="0"/>
-                <Editor x:Name="UserEntryEditor4" TextChanged="UserEntryEditor_OnTextChanged" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
+                <Editor x:Name="UserEntryEditor4" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label x:Name="WordScore4" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
 

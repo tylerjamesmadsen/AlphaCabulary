@@ -83,15 +83,15 @@ namespace AlphaCabulary.Pages
                 LetterPair4.Text + UserEntryEditor4.Text
             };
 
-            await _gameService.CalculateScoresAsync();
+            await _gameService.CalculateScoresAsync(words);
         }
 
         private void OnGameScoreCalculated(object sender, GameScoreEventArgs e)
         {
-            WordScore1.Text += e.Scores[0].WordScore;
-            WordScore2.Text += e.Scores[1].WordScore;
-            WordScore3.Text += e.Scores[2].WordScore;
-            WordScore4.Text += e.Scores[3].WordScore;
+            WordScore1.Text = e.Scores[0].WordScore.ToString();
+            WordScore2.Text = e.Scores[1].WordScore.ToString();
+            WordScore3.Text = e.Scores[2].WordScore.ToString();
+            WordScore4.Text = e.Scores[3].WordScore.ToString();
 
             WordScore1.IsVisible = true;
             WordScore2.IsVisible = true;
@@ -105,6 +105,7 @@ namespace AlphaCabulary.Pages
 
         private void StartStopButton_OnClicked(object sender, EventArgs e)
         {
+            Reset();
             _gameService.StartCancel();
         }
 
@@ -132,11 +133,13 @@ namespace AlphaCabulary.Pages
             UserEntryEditor2.Text = "";
             UserEntryEditor3.Text = "";
             UserEntryEditor4.Text = "";
-        }
 
-        private void UserEntryEditor_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            _gameService.UpdateWordDictionary((sender as Editor)?.Text, e.NewTextValue);
+            WordScore1.Text = "";
+            WordScore2.Text = "";
+            WordScore3.Text = "";
+            WordScore4.Text = "";
+
+            TotalScore.Text = "";
         }
     }
 }

@@ -16,7 +16,6 @@ namespace AlphaCabulary.ApplicationCore.Catalog.Interfaces
 
         void StartCancel();
         void Stop();
-        Task CalculateScoresAsync();
-        void UpdateWordDictionary(string key, string userEnteredText);
+        Task CalculateScoresAsync(IList<string> words);
     }
 }

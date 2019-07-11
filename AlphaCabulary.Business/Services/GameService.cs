@@ -21,7 +21,6 @@ namespace AlphaCabulary.Business.Services
         private readonly ILetterPairGenerator _letterPairGenerator;
         private readonly ITimer _timer;
         private readonly IScoreCalculator _scoreCalculator;
-        private readonly IDictionary<string, string> _wordDictionary = new Dictionary<string, string>();
 
         public GameService(ILetterPairGenerator letterPairGenerator, ITimer timer, IScoreCalculator scoreCalculator)
         {
@@ -80,10 +79,10 @@ namespace AlphaCabulary.Business.Services
         {
             TimerTicked?.Invoke(this, e);
 
-            if (e.TotalSeconds == 0)
-            {
-                GameFinished?.Invoke(this, EventArgs.Empty);
-            }
+            if (e.TotalSeconds != 0) { return; }
+
+            Stop();
+            GameFinished?.Invoke(this, EventArgs.Empty);
         }
 
         public void Stop()
@@ -93,23 +92,17 @@ namespace AlphaCabulary.Business.Services
             _timer.Stop();
         }
 
-        public async Task CalculateScoresAsync()
+        public async Task CalculateScoresAsync(IList<string> words)
         {
             var scores = new List<Score>();
 
-            foreach (KeyValuePair<string, string> pair in _wordDictionary)
+            foreach (string word in words)
             {
-                string word = pair.Key + pair.Value.Trim();
                 Score score = await _scoreCalculator.CalculateScoreAsync(word);
                 scores.Add(score);
             }
 
             ScoreCalculated?.Invoke(this, new GameScoreEventArgs(scores));
-        }
-
-        public void UpdateWordDictionary(string key, string userEnteredText)
-        {
-            _wordDictionary[key] = userEnteredText;
         }
     }
 }
