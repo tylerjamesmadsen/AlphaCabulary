@@ -42,7 +42,7 @@ namespace AlphaCabulary.Factories
             wordGrid.Children.Add(userEntryEditor);
             userEntryEditor.TextChanged += delegate (object sender, TextChangedEventArgs e)
             {
-                _gameService.UpdateUserWordEntry(letterPairLabel.Text, e.NewTextValue);
+                _gameService.UpdateUserWordEntry(userEntryEditor.Id, letterPairLabel.Text + e.NewTextValue);
             };
 
             Label wordScoreLabel = GenerateWordScoreLabel();
