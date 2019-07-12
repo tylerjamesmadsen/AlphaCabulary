@@ -6,103 +6,43 @@
              mc:Ignorable="d"
              x:Class="AlphaCabulary.Pages.GamePage">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout>
 
-            <Grid x:Name="StartGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                <Grid x:Name="StartGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <Button x:Name="StartStopButton" Text="Start!" BackgroundColor="{StaticResource AlphacabularyGreen}"
-                        Clicked="StartStopButton_OnClicked" HorizontalOptions="FillAndExpand"
-                        Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
-                <Label x:Name="TimerLabel" Grid.Column="1" Grid.Row="0"/>
-            </Grid>
+                    <Button x:Name="StartStopButton" Text="Start!" BackgroundColor="{StaticResource AlphacabularyGreen}"
+                            Clicked="StartStopButton_OnClicked" HorizontalOptions="FillAndExpand"
+                            Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                    <Label x:Name="TimerLabel" Grid.Column="1" Grid.Row="0"/>
+                </Grid>
 
-            <StackLayout x:Name="UserEntryStackLayout">
-                <!--Generated in code-->
+                <StackLayout x:Name="UserEntryStackLayout" />
+                <!--UserEntryStackLayout children generated in code-->
+
+                <Grid x:Name="ScoreGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="TotalScoreLabel" Text="Total Score" IsVisible="False" Grid.Column="0" Grid.Row="0"></Label>
+                    <Label x:Name="TotalScore" IsVisible="False" Grid.Column="0" Grid.Row="1"></Label>
+                    <Image Source="alphacabulary_logo.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"/>
+                </Grid>
             </StackLayout>
-
-            <!--<Grid x:Name="WordGrid1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Label x:Name="LetterPair1" Text="XX" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"
-                       HorizontalOptions="End" Margin="10, 0, 0, 0"/>
-                <Editor x:Name="UserEntryEditor1" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
-                <Label x:Name="WordScore1" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
-            </Grid>
-
-            <Grid x:Name="WordGrid2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Label x:Name="LetterPair2" Text="XX" Grid.Column="0" Grid.Row="0"/>
-                <Editor x:Name="UserEntryEditor2" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
-                <Label x:Name="WordScore2" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
-            </Grid>
-
-            <Grid x:Name="WordGrid3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Label x:Name="LetterPair3" Text="XX" Grid.Column="0" Grid.Row="0"/>
-                <Editor x:Name="UserEntryEditor3" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
-                <Label x:Name="WordScore3" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
-            </Grid>
-
-            <Grid x:Name="WordGrid4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Label x:Name="LetterPair4" Text="XX" Grid.Column="0" Grid.Row="0"/>
-                <Editor x:Name="UserEntryEditor4" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
-                <Label x:Name="WordScore4" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
-            </Grid>-->
-
-            <Grid x:Name="ScoreGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Label x:Name="TotalScoreLabel" Text="Total Score" IsVisible="False" Grid.Column="0" Grid.Row="0"></Label>
-                <Label x:Name="TotalScore" IsVisible="False" Grid.Column="0" Grid.Row="1"></Label>
-                <Image Source="alphacabulary_logo.png" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"/>
-            </Grid>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

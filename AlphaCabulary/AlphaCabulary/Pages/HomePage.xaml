@@ -6,14 +6,16 @@
              mc:Ignorable="d"
              x:Class="AlphaCabulary.Pages.HomePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Image Source="alphacabulary_logo.png" Margin="100,50,100,10" />
-            <StackLayout Padding="100">
-                <Button x:Name="PlayButton" Text="Play" Clicked="PlayButton_OnClicked" BackgroundColor="{StaticResource AlphacabularyGreen}" TextColor="#FFFFFF" />
-                <Button x:Name="InstructionsButton" Text="Instructions" Clicked="InstructionsButton_OnClicked" BackgroundColor="{StaticResource AlphacabularyRed}" TextColor="#FFFFFF" />
-                <Button x:Name="SettingsButton" Text="Settings" Clicked="SettingsButton_OnClicked" BackgroundColor="{StaticResource AlphacabularyBlue}" TextColor="#FFFFFF"/>
-                <Button x:Name="HighScoresButton" Text="High Scores" Clicked="HighScoresButton_OnClicked" BackgroundColor="{StaticResource AlphacabularyYellow}" TextColor="#FFFFFF"/>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="alphacabulary_logo.png" Margin="100,50,100,10" />
+                <StackLayout Padding="100">
+                    <Button x:Name="PlayButton" Text="Play" Clicked="PlayButton_OnClicked" BackgroundColor="{StaticResource AlphacabularyGreen}" TextColor="#FFFFFF" />
+                    <Button x:Name="InstructionsButton" Text="Instructions" Clicked="InstructionsButton_OnClicked" BackgroundColor="{StaticResource AlphacabularyRed}" TextColor="#FFFFFF" />
+                    <Button x:Name="SettingsButton" Text="Settings" Clicked="SettingsButton_OnClicked" BackgroundColor="{StaticResource AlphacabularyBlue}" TextColor="#FFFFFF"/>
+                    <Button x:Name="HighScoresButton" Text="High Scores" Clicked="HighScoresButton_OnClicked" BackgroundColor="{StaticResource AlphacabularyYellow}" TextColor="#FFFFFF"/>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
