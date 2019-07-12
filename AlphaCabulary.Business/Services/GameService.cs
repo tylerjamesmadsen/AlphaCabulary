@@ -21,6 +21,7 @@ namespace AlphaCabulary.Business.Services
         private readonly ILetterPairGenerator _letterPairGenerator;
         private readonly ITimer _timer;
         private readonly IScoreCalculator _scoreCalculator;
+        private readonly IDictionary<string, string> _wordsDictionary = new Dictionary<string, string>();
 
         public GameService(ILetterPairGenerator letterPairGenerator, ITimer timer, IScoreCalculator scoreCalculator)
         {
@@ -63,9 +64,11 @@ namespace AlphaCabulary.Business.Services
         {
             GameStarted?.Invoke(this, EventArgs.Empty);
 
-            IList<string> letterPairs = _letterPairGenerator.GetLetterPairList(4);
-            LetterPairsGenerated?.Invoke(this, new LetterPairsEventArgs(letterPairs)); // TODO: use numPairs from settings
-            _timer.StartAsync(10); // TODO: use time from settings
+            IList<string> letterPairs = _letterPairGenerator.GetLetterPairList(4); // TODO: use numPairs from settings
+
+            InitializeWordsDictionary(letterPairs);
+            LetterPairsGenerated?.Invoke(this, new LetterPairsEventArgs(letterPairs));
+            _timer.StartAsync(3); // TODO: use time from settings
         }
 
         private void Cancel()
@@ -92,17 +95,38 @@ namespace AlphaCabulary.Business.Services
             _timer.Stop();
         }
 
-        public async Task CalculateScoresAsync(IList<string> words)
+        public async Task CalculateScoresAsync()
         {
             var scores = new List<Score>();
 
-            foreach (string word in words)
+            foreach (KeyValuePair<string, string> pair in _wordsDictionary)
             {
+                string word = pair.Key + pair.Value.Trim();
                 Score score = await _scoreCalculator.CalculateScoreAsync(word);
                 scores.Add(score);
             }
 
             ScoreCalculated?.Invoke(this, new GameScoreEventArgs(scores));
+        }
+
+        private void InitializeWordsDictionary(IEnumerable<string> letterPairs)
+        {
+            _wordsDictionary.Clear();
+
+            foreach (string pair in letterPairs)
+            {
+                _wordsDictionary.Add(pair, "");
+            }
+        }
+
+        public void UpdateUserWordEntry(string letterPair, string userEntry)
+        {
+            if (!_wordsDictionary.ContainsKey(letterPair))
+            {
+                return;
+            }
+
+            _wordsDictionary[letterPair] = userEntry;
         }
     }
 }

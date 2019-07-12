@@ -14,12 +14,16 @@ namespace AlphaCabulary.Pages
     public partial class GamePage : ContentPage
     {
         private readonly IGameService _gameService;
+        private readonly IList<Label> _letterPairLabels = new List<Label>();
+        private readonly IList<Label> _wordScoreLabels = new List<Label>();
+        private readonly IList<Editor> _userEntryEditors = new List<Editor>();
 
         public GamePage(IGameService gameService)
         {
             _gameService = gameService ?? throw new ArgumentNullException(nameof(gameService));
 
             InitializeComponent();
+            BuildWordGrids();
         }
 
         protected override void OnAppearing()
@@ -34,6 +38,78 @@ namespace AlphaCabulary.Pages
             _gameService.Stop();
 
             UnsubscribeFromCustomEvents();
+        }
+
+        private void BuildWordGrids()
+        {
+            for (var i = 0; i < 4 /*TODO: use value from settings*/; i++)
+            {
+                var wordGrid = new Grid
+                {
+                    ColumnDefinitions = new ColumnDefinitionCollection {
+                        new ColumnDefinition { Width = GridLength.Auto },
+                        new ColumnDefinition { Width = GridLength.Star }
+                    },
+                    RowDefinitions = new RowDefinitionCollection { new RowDefinition(), new RowDefinition() }
+                };
+
+                Label letterPairLabel = GenerateLetterPairLabel();
+                _letterPairLabels.Add(letterPairLabel);
+                Grid.SetColumn(letterPairLabel, 0);
+                Grid.SetRow(letterPairLabel, 0);
+                wordGrid.Children.Add(letterPairLabel);
+
+                Editor userEntryEditor = GenerateUserEntryEditor();
+                _userEntryEditors.Add(userEntryEditor);
+                Grid.SetColumn(userEntryEditor, 1);
+                Grid.SetRow(userEntryEditor, 0);
+                wordGrid.Children.Add(userEntryEditor);
+                userEntryEditor.TextChanged += delegate (object sender, TextChangedEventArgs e)
+                {
+                    _gameService.UpdateUserWordEntry(letterPairLabel.Text, e.NewTextValue);
+                };
+
+                Label wordScoreLabel = GenerateWordScoreLabel();
+                _wordScoreLabels.Add(wordScoreLabel);
+                Grid.SetColumn(wordScoreLabel, 1);
+                Grid.SetRow(wordScoreLabel, 1);
+                wordGrid.Children.Add(wordScoreLabel);
+
+                UserEntryStackLayout.Children.Add(wordGrid);
+            }
+        }
+
+        private static Label GenerateLetterPairLabel()
+        {
+            return new Label
+            {
+                Text = "XX",
+                VerticalOptions = LayoutOptions.Center,
+                Margin = new Thickness
+                {
+                    Bottom = 0.0,
+                    Left = 10.0,
+                    Right = 0.0,
+                    Top = 0.0
+                }
+            };
+        }
+
+        private static Editor GenerateUserEntryEditor()
+        {
+            return new Editor
+            {
+                Keyboard = Keyboard.Text,
+                IsTextPredictionEnabled = false
+            };
+        }
+
+        private static Label GenerateWordScoreLabel()
+        {
+            return new Label
+            {
+                IsVisible = false,
+            };
         }
 
         private void SubscribeToCustomEvents()
@@ -67,36 +143,30 @@ namespace AlphaCabulary.Pages
 
         private void OnLetterPairsGenerated(object sender, LetterPairsEventArgs e)
         {
-            LetterPair1.Text = e.LetterPairs[0];
-            LetterPair2.Text = e.LetterPairs[1];
-            LetterPair3.Text = e.LetterPairs[2];
-            LetterPair4.Text = e.LetterPairs[3];
+            for (var i = 0; i < e.LetterPairs.Count; i++)
+            {
+                if (_letterPairLabels[i] is null) continue;
+
+                _letterPairLabels[i].Text = e.LetterPairs[i];
+
+                //_userEntryEditors[i].Text = e.LetterPairs[i];
+            }
         }
 
         private async void OnGameFinishedAsync(object sender, EventArgs e)
         {
-            var words = new List<string>
-            {
-                LetterPair1.Text + UserEntryEditor1.Text,
-                LetterPair2.Text + UserEntryEditor2.Text,
-                LetterPair3.Text + UserEntryEditor3.Text,
-                LetterPair4.Text + UserEntryEditor4.Text
-            };
-
-            await _gameService.CalculateScoresAsync(words);
+            await _gameService.CalculateScoresAsync();
         }
 
         private void OnGameScoreCalculated(object sender, GameScoreEventArgs e)
         {
-            WordScore1.Text = e.Scores[0].WordScore.ToString();
-            WordScore2.Text = e.Scores[1].WordScore.ToString();
-            WordScore3.Text = e.Scores[2].WordScore.ToString();
-            WordScore4.Text = e.Scores[3].WordScore.ToString();
+            for (var i = 0; i < e.Scores.Count; i++)
+            {
+                if (_wordScoreLabels[i] is null) continue;
 
-            WordScore1.IsVisible = true;
-            WordScore2.IsVisible = true;
-            WordScore3.IsVisible = true;
-            WordScore4.IsVisible = true;
+                _wordScoreLabels[i].Text = $"Word score: {e.Scores[i].WordScore}";
+                _wordScoreLabels[i].IsVisible = true;
+            }
 
             TotalScore.Text = e.TotalScore.ToString();
             TotalScore.IsVisible = true;
@@ -129,17 +199,24 @@ namespace AlphaCabulary.Pages
 
         private void Reset()
         {
-            UserEntryEditor1.Text = "";
-            UserEntryEditor2.Text = "";
-            UserEntryEditor3.Text = "";
-            UserEntryEditor4.Text = "";
+            foreach (Label label in _letterPairLabels)
+            {
+                label.Text = "XX";
+            }
 
-            WordScore1.Text = "";
-            WordScore2.Text = "";
-            WordScore3.Text = "";
-            WordScore4.Text = "";
+            foreach (Editor editor in _userEntryEditors)
+            {
+                editor.Text = "";
+            }
+
+            foreach (Label label in _wordScoreLabels)
+            {
+                label.Text = "";
+                label.IsVisible = false;
+            }
 
             TotalScore.Text = "";
+            TotalScore.IsVisible = false;
         }
     }
 }

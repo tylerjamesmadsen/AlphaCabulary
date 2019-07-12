@@ -18,22 +18,28 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Button x:Name="StartStopButton" Text="Start!" BackgroundColor="{StaticResource AlphacabularyGreen}" Clicked="StartStopButton_OnClicked" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                <Button x:Name="StartStopButton" Text="Start!" BackgroundColor="{StaticResource AlphacabularyGreen}"
+                        Clicked="StartStopButton_OnClicked" HorizontalOptions="FillAndExpand"
+                        Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
                 <Label x:Name="TimerLabel" Grid.Column="1" Grid.Row="0"/>
-
             </Grid>
 
-            <Grid x:Name="WordGrid1">
+            <StackLayout x:Name="UserEntryStackLayout">
+                <!--Generated in code-->
+            </StackLayout>
+
+            <!--<Grid x:Name="WordGrid1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label x:Name="LetterPair1" Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="LetterPair1" Text="XX" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"
+                       HorizontalOptions="End" Margin="10, 0, 0, 0"/>
                 <Editor x:Name="UserEntryEditor1" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label x:Name="WordScore1" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
@@ -48,7 +54,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label x:Name="LetterPair2" Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="LetterPair2" Text="XX" Grid.Column="0" Grid.Row="0"/>
                 <Editor x:Name="UserEntryEditor2" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label x:Name="WordScore2" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
@@ -63,7 +69,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label x:Name="LetterPair3" Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="LetterPair3" Text="XX" Grid.Column="0" Grid.Row="0"/>
                 <Editor x:Name="UserEntryEditor3" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label x:Name="WordScore3" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
             </Grid>
@@ -78,10 +84,10 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label x:Name="LetterPair4" Text="TEST" Grid.Column="0" Grid.Row="0"/>
+                <Label x:Name="LetterPair4" Text="XX" Grid.Column="0" Grid.Row="0"/>
                 <Editor x:Name="UserEntryEditor4" Grid.Column="1" Grid.Row="0" Keyboard="Text"/>
                 <Label x:Name="WordScore4" Text="Word score: " IsVisible="False" Grid.Column="1" Grid.Row="1"></Label>
-            </Grid>
+            </Grid>-->
 
             <Grid x:Name="ScoreGrid">
                 <Grid.ColumnDefinitions>
