@@ -66,9 +66,8 @@ namespace AlphaCabulary.Business.Services
 
             IList<string> letterPairs = _letterPairGenerator.GetLetterPairList(4); // TODO: use numPairs from settings
 
-            _wordsDictionary.Clear();
             LetterPairsGenerated?.Invoke(this, new LetterPairsEventArgs(letterPairs));
-            _timer.StartAsync(3); // TODO: use time from settings
+            _timer.StartAsync(10); // TODO: use time from settings
         }
 
         private void Cancel()
@@ -105,6 +104,8 @@ namespace AlphaCabulary.Business.Services
                 scores.Add(score);
             }
 
+            _wordsDictionary.Clear();
+
             ScoreCalculated?.Invoke(this, new GameScoreEventArgs(scores));
         }
 
@@ -113,14 +114,11 @@ namespace AlphaCabulary.Business.Services
             _wordsDictionary.Add(id, "");
         }
 
-        public void UpdateUserWordEntry(Guid guid, string word)
+        public void UpdateUserWordEntry(Guid id, string word)
         {
-            if (!_wordsDictionary.ContainsKey(guid))
-            {
-                return;
-            }
+            if (!_wordsDictionary.ContainsKey(id)) return;
 
-            _wordsDictionary[guid] = word.Trim();
+            _wordsDictionary[id] = word.Trim();
         }
     }
 }

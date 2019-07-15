@@ -55,9 +55,7 @@ namespace AlphaCabulary.Pages
             _gameService.ScoreCalculated += OnGameScoreCalculated;
             _gameService.GameStarted += OnGameStarted;
             _gameService.GameFinished += OnGameFinishedAsync;
-            _gameService.GameFinished += OnGameStopped;
             _gameService.GameCancelled += OnGameCancelled;
-            _gameService.GameCancelled += OnGameStopped;
         }
 
         private void UnsubscribeFromCustomEvents()
@@ -67,9 +65,7 @@ namespace AlphaCabulary.Pages
             _gameService.ScoreCalculated -= OnGameScoreCalculated;
             _gameService.GameStarted -= OnGameStarted;
             _gameService.GameFinished -= OnGameFinishedAsync;
-            _gameService.GameFinished -= OnGameStopped;
             _gameService.GameCancelled -= OnGameCancelled;
-            _gameService.GameCancelled -= OnGameStopped;
         }
 
         private void OnGameTimerTick(object sender, TimerEventArgs e)
@@ -98,29 +94,33 @@ namespace AlphaCabulary.Pages
 
         private void StartStopButton_OnClicked(object sender, EventArgs e)
         {
-            Reset();
+            ResetUI();
             _gameService.StartCancel();
         }
 
         private void OnGameStarted(object sender, EventArgs e)
         {
+            _wordGridFactory.SetUserEntryEnabledState(true);
+
             StartStopButton.Text = "Stop";
             StartStopButton.BackgroundColor = (Color)Application.Current.Resources["AlphacabularyRed"];
         }
 
         private void OnGameStopped(object sender, EventArgs e)
         {
+            _wordGridFactory.SetUserEntryEnabledState(false);
+
             StartStopButton.Text = "Start!";
             StartStopButton.BackgroundColor = (Color)Application.Current.Resources["AlphacabularyGreen"];
         }
 
         private void OnGameCancelled(object sender, EventArgs e)
         {
-            _gameService.Stop();
-            Reset();
+            OnGameStopped(sender, e);
+            ResetUI();
         }
 
-        private void Reset()
+        private void ResetUI()
         {
             _wordGridFactory.Reset();
 
