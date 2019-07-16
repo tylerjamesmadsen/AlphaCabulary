@@ -104,7 +104,7 @@ namespace AlphaCabulary.Business.Services
                 scores.Add(score);
             }
 
-            _wordsDictionary.Clear();
+            //_wordsDictionary.Clear();
 
             ScoreCalculated?.Invoke(this, new GameScoreEventArgs(scores));
         }

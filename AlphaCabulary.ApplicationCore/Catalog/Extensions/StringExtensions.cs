@@ -6,7 +6,9 @@ namespace AlphaCabulary.ApplicationCore.Catalog.Extensions
     {
         public static string Sanitize(this string source)
         {
-            return new string(source.Where(char.IsLetter).ToArray()).Trim().ToUpper();
+            return string.IsNullOrWhiteSpace(source)
+                ? ""
+                : new string(source.Where(char.IsLetter).ToArray()).Trim().ToUpper();
         }
     }
 }

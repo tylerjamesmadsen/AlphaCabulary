@@ -80,6 +80,7 @@ namespace AlphaCabulary.Pages
 
         private async void OnGameFinishedAsync(object sender, EventArgs e)
         {
+            OnGameStopped(sender, e);
             await _gameService.CalculateScoresAsync();
         }
 
@@ -100,7 +101,7 @@ namespace AlphaCabulary.Pages
 
         private void OnGameStarted(object sender, EventArgs e)
         {
-            _wordGridFactory.SetUserEntryEnabledState(true);
+            _wordGridFactory.SetUserEntryReadOnlyState(false);
 
             StartStopButton.Text = "Stop";
             StartStopButton.BackgroundColor = (Color)Application.Current.Resources["AlphacabularyRed"];
@@ -108,7 +109,7 @@ namespace AlphaCabulary.Pages
 
         private void OnGameStopped(object sender, EventArgs e)
         {
-            _wordGridFactory.SetUserEntryEnabledState(false);
+            _wordGridFactory.SetUserEntryReadOnlyState(true);
 
             StartStopButton.Text = "Start!";
             StartStopButton.BackgroundColor = (Color)Application.Current.Resources["AlphacabularyGreen"];
@@ -124,8 +125,9 @@ namespace AlphaCabulary.Pages
         {
             _wordGridFactory.Reset();
 
-            TotalScore.Text = "";
+            TotalScoreLabel.IsVisible = false;
             TotalScore.IsVisible = false;
+            TotalScore.Text = "";
         }
     }
 }
