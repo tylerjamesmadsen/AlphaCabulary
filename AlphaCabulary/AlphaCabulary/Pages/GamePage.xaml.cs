@@ -88,8 +88,7 @@ namespace AlphaCabulary.Pages
         {
             _wordGridFactory.UpdateWordScores(e.Scores);
 
-            TotalScore.Text = e.TotalScore.ToString();
-            TotalScore.IsVisible = true;
+            TotalScoreLabel.Text = $"Total: {e.TotalScore}" ;
             TotalScoreLabel.IsVisible = true;
         }
 
@@ -126,8 +125,7 @@ namespace AlphaCabulary.Pages
             _wordGridFactory.Reset();
 
             TotalScoreLabel.IsVisible = false;
-            TotalScore.IsVisible = false;
-            TotalScore.Text = "";
+            TotalScoreLabel.Text = "";
         }
     }
 }

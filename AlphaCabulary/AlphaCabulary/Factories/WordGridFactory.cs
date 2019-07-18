@@ -65,7 +65,8 @@ namespace AlphaCabulary.Factories
             {
                 Keyboard = Keyboard.Text,
                 IsTextPredictionEnabled = false,
-                IsReadOnly = true
+                IsReadOnly = true,
+                FontSize = 22.0 // TODO: set this in app settings (access it with Property = Application.Current.Resources["MyProperty"] as Type)
             };
         }
 
@@ -74,6 +75,7 @@ namespace AlphaCabulary.Factories
             return new Label
             {
                 IsVisible = false,
+                FontSize = 20.0 // TODO: set this in app settings (access it with Property = Application.Current.Resources["MyProperty"] as Type)
             };
         }
 
