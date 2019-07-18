@@ -15,7 +15,7 @@ namespace AlphaCabulary.Pages
 
         protected override void OnAppearing()
         {
-            Assembly assembly = IntrospectionExtensions.GetTypeInfo(typeof(InstructionsPage)).Assembly;
+            Assembly assembly = typeof(InstructionsPage).GetTypeInfo().Assembly;
             Stream stream = assembly.GetManifestResourceStream("AlphaCabulary.Resources.alphacabulary_rules.txt");
 
             if (stream is null) return;

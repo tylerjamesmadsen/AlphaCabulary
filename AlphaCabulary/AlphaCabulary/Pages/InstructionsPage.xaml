@@ -7,7 +7,7 @@
              x:Class="AlphaCabulary.Pages.InstructionsPage">
     <ContentPage.Content>
         <ScrollView>
-            <Editor x:Name="InstructionsDisplay" />
+            <Editor x:Name="InstructionsDisplay" FontSize="Medium" />
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
