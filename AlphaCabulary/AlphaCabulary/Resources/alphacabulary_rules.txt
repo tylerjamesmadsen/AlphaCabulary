@@ -1,0 +1,24 @@
+﻿Purpose: To score as many points per word as possible (see #5 - Scoring). The person with the highest total score wins. 
+
+1.	Open the Game page by selecting the “Play” button.
+
+2.	On the Game page, select “Start!” to start the game timer. Four initial letter pairs will be generated and the timer will start counting down.
+
+3.	Players then enter a word that begins with the two letters trying to get as many extra points as possible. Repeat for each letter pair. Proper nouns may not be used.
+
+4.	The round ends when the timer runs out.
+
+5.	Scoring
+ 	- One (1) point per letter (except for the initial letter pair).
+	- Less commonly used letters get more points as indicated below. 
+		No extra points: A, E, I, O, T
+		1 extra point: D, H, L, N, R, S
+		3 extra points: B, C, F, G, M, P, U, W, Y
+		5 extra points:  J, K, Q, V, X, Z
+	- Double letters such as in "apple" and "choose" are two (2) extra points.		   	
+	- One extra point per syllable.
+
+
+This is a good learning/educational experience, especially for people who are trying to develop, strengthen, and expand their vocabulary and improve their spelling skills.
+
+Have fun! And learn from the experience. Astonish your friends with your awesome vocabulary! Be amazed by your friends’ incredible word skills! Have some good laughs!

@@ -79,7 +79,7 @@ namespace AlphaCabulary.Business.Game
         {
             if (string.IsNullOrWhiteSpace(word)) { return 0; }
 
-            return word.Trim().Length * POINTS_PER_LETTER;
+            return word.Trim().Length * POINTS_PER_LETTER - 2; // subtract two points for the initial letter pair
         }
 
         /// <summary>

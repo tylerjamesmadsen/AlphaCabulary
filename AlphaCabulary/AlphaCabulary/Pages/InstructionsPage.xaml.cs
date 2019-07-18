@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.IO;
+using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +11,22 @@ namespace AlphaCabulary.Pages
         public InstructionsPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            Assembly assembly = IntrospectionExtensions.GetTypeInfo(typeof(InstructionsPage)).Assembly;
+            Stream stream = assembly.GetManifestResourceStream("AlphaCabulary.Resources.alphacabulary_rules.txt");
+
+            if (stream is null) return;
+
+            string text;
+            using (var reader = new StreamReader(stream))
+            {
+                text = reader.ReadToEnd();
+            }
+
+            InstructionsDisplay.Text = text;
         }
     }
 }
