@@ -113,6 +113,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="alphacabulary_logo.png" />
+    <Content Include="Assets\AlphaCabularySplash.scale-100.png" />
+    <Content Include="Assets\AlphaCabularySplash.scale-125.png" />
+    <Content Include="Assets\AlphaCabularySplash.scale-150.png" />
+    <Content Include="Assets\AlphaCabularySplash.scale-200.png" />
+    <Content Include="Assets\AlphaCabularySplash.scale-400.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
