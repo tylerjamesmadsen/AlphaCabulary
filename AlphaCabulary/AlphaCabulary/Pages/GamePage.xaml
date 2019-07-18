@@ -17,6 +17,9 @@
                 <StackLayout x:Name="UserEntryStackLayout" />
                 <!--UserEntryStackLayout children generated in code-->
 
+                <Button x:Name="FinishButton" Text="Finish" BackgroundColor="{StaticResource AlphacabularyBlue}"
+                        Clicked="FinishButton_OnClicked"  HorizontalOptions="FillAndExpand" FontSize="Medium"
+                        TextColor="#FFFFFF" IsVisible="False"/>
                 <Label x:Name="TotalScoreLabel" Text="Total Score" IsVisible="False" FontSize="Large" />
                 <Label x:Name="TotalScore" IsVisible="False" FontSize="108.0" />
                 <!--<Image Source="alphacabulary_logo.png" />-->

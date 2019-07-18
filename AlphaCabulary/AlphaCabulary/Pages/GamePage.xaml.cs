@@ -26,6 +26,14 @@ namespace AlphaCabulary.Pages
             AddWordGrids();
         }
 
+        private void AddWordGrids()
+        {
+            for (var i = 0; i < 4 /*TODO: use value from settings*/; i++)
+            {
+                UserEntryStackLayout.Children.Add(_wordGridFactory.Create());
+            }
+        }
+
         protected override void OnAppearing()
         {
             SubscribeToCustomEvents();
@@ -38,14 +46,6 @@ namespace AlphaCabulary.Pages
             _gameService.Stop();
 
             UnsubscribeFromCustomEvents();
-        }
-
-        private void AddWordGrids()
-        {
-            for (var i = 0; i < 4 /*TODO: use value from settings*/; i++)
-            {
-                UserEntryStackLayout.Children.Add(_wordGridFactory.Create());
-            }
         }
 
         private void SubscribeToCustomEvents()
@@ -80,6 +80,8 @@ namespace AlphaCabulary.Pages
 
         private async void OnGameFinishedAsync(object sender, EventArgs e)
         {
+            FinishButton.IsVisible = false;
+
             OnGameStopped(sender, e);
             await _gameService.CalculateScoresAsync();
         }
@@ -117,15 +119,22 @@ namespace AlphaCabulary.Pages
         private void OnGameCancelled(object sender, EventArgs e)
         {
             OnGameStopped(sender, e);
-            ResetUI();
+            //ResetUI();
         }
 
         private void ResetUI()
         {
             _wordGridFactory.Reset();
 
+            FinishButton.IsVisible = !FinishButton.IsVisible;
             TotalScoreLabel.IsVisible = false;
             TotalScoreLabel.Text = "";
+        }
+
+        private void FinishButton_OnClicked(object sender, EventArgs e)
+        {
+            _gameService.Stop();
+            OnGameFinishedAsync(sender, e);
         }
     }
 }

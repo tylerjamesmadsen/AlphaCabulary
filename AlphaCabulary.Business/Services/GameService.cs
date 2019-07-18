@@ -67,14 +67,13 @@ namespace AlphaCabulary.Business.Services
             IList<string> letterPairs = _letterPairGenerator.GetLetterPairList(4); // TODO: use numPairs from settings
 
             LetterPairsGenerated?.Invoke(this, new LetterPairsEventArgs(letterPairs));
-            _timer.StartAsync(10); // TODO: use time from settings
+            _timer.StartAsync(45 * letterPairs.Count); // TODO: use time from settings
         }
 
         private void Cancel()
         {
             Stop();
             GameCancelled?.Invoke(this, EventArgs.Empty);
-            return;
         }
 
         private void OnTimerTick(object sender, TimerEventArgs e)
@@ -103,8 +102,6 @@ namespace AlphaCabulary.Business.Services
                 Score score = await _scoreCalculator.CalculateScoreAsync(pair.Value.Trim());
                 scores.Add(score);
             }
-
-            //_wordsDictionary.Clear();
 
             ScoreCalculated?.Invoke(this, new GameScoreEventArgs(scores));
         }
