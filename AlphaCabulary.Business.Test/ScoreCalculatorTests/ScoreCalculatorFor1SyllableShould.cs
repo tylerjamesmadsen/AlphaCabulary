@@ -57,7 +57,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             var actual = (int)score?.WordScore;
 
             //-- Assert
-            var expected = 7; // 3 + (3 + 0 + 0) + 1
+            var expected = 9; // 3 + (5 + 0 + 0) + 1
             Assert.AreEqual(expected, actual);
         }
 
@@ -73,7 +73,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             var actual = (int)score?.WordScore;
 
             //-- Assert
-            var expected = 12; // 5 + (2 + 0 + 3 + 0 + 1) + 1
+            var expected = 15; // 5 + (3 + 0 + 5 + 0 + 1) + 1
             Assert.AreEqual(expected, actual);
         }
 

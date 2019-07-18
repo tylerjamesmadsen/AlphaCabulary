@@ -13,11 +13,11 @@ namespace AlphaCabulary.Business.Game
 
         // TODO: move values to config
         private const int POINTS_PER_LETTER = 1;
-        private readonly int[] _extraPoints = { 1, 2, 3 };
+        private readonly int[] _extraPoints = { 1, 3, 5 };
         private const string EXTRA_POINTS_0 = "AEIOT";
         private const string EXTRA_POINTS_1 = "DHLNRS";
-        private const string EXTRA_POINTS_2 = "BCFGMPUWY";
-        private const string EXTRA_POINTS_3 = "JKQVXZ";
+        private const string EXTRA_POINTS_3 = "BCFGMPUWY";
+        private const string EXTRA_POINTS_5 = "JKQVXZ";
 
         public ScoreCalculator(IWordLookup wordLookup)
         {
@@ -107,13 +107,13 @@ namespace AlphaCabulary.Business.Game
                     continue;
                 }
 
-                if (EXTRA_POINTS_2.Contains(letter.ToString()))
+                if (EXTRA_POINTS_3.Contains(letter.ToString()))
                 {
                     extraPointsScore += _extraPoints[1];
                     continue;
                 }
 
-                if (EXTRA_POINTS_3.Contains(letter.ToString()))
+                if (EXTRA_POINTS_5.Contains(letter.ToString()))
                 {
                     extraPointsScore += _extraPoints[2];
                 }

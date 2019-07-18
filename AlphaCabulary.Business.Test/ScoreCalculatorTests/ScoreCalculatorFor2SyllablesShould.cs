@@ -93,7 +93,7 @@ namespace AlphaCabulary.Business.Test.ScoreCalculatorTests
             var actual = (int)score?.WordScore;
 
             //-- Assert
-            var expected = 12; // 6 + (0 + 0 + 0 + 2 + 0 + 0) + 2 + 2
+            var expected = 13; // 6 + (0 + 0 + 0 + 3 + 0 + 0) + 2 + 2
             Assert.AreEqual(expected, actual);
         }
     }
